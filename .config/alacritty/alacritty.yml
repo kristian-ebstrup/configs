@@ -1,0 +1,22 @@
+{
+        "env": {
+                "TERM": xterm-256color
+        },
+        "font": {
+                "bold": {
+                        "family": "Hack"
+                },
+                "italic": {
+                        "family": "Hack"
+                },
+                "normal": {
+                        "family": "Hack"
+                },
+                "use_thin_strokes": true
+        },
+        "window": {
+                "startup_mode": "Maximized",
+                "title": "Terminal"
+        }
+}
+
