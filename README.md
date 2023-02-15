@@ -2,13 +2,20 @@
 This repository contains my configuration files for the most critical applications used. Further, this readme contains a list of commonly used applications which are relevant to install after a potential reinstallation of a Debian-based distro.
 
 # Applications
-As part of recovering from a reinstallation of a Debian-based diistro, re-install the following:
-- alacritty
-- starship
-- rust
+As part of recovering from a reinstallation of a Debian-based distro, re-install the following:
+
+*General tools*
+- Alacritty
+- Starship
+- Rust
 - fzf
 - base16-shell
 - tmux
+- hyperfine
+- neovim
+- Zettler
+
+*PhD-related tools*
 - MATLAB
 - EllipSys2D
 - EllipSys3D
@@ -16,9 +23,7 @@ As part of recovering from a reinstallation of a Debian-based diistro, re-instal
 - Pointwise
 - FieldView
 - ParaView
-- hyperfine
-- nvim
-- zettler (or any other markdown editor)
+
 
 # Installation
 The installation progress here is described sequentially, and isolated steps might depend on preceeding commands or applications.
@@ -41,6 +46,9 @@ Install `curl` using `apt`, as using `snap` causes some issues for `curl`:
 ```
 sudo apt install curl
 ```
+
+## General tools
+The installation instructions for the general tools follows in this section. No special credentials are necessary to install and set-up the general tools using my configs.
 
 ### Rust
 ```
@@ -99,6 +107,38 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 Subsequently, open Neovim (e.g. by typing `nvim` in the terminal) and input `:PackerInstall` to automatically install the plugins included in `plugins.lua`.
+
+## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
+The installation instructions for the tools in this section assumes valid licenses and general access privileges (especially to the DTU Wind Energy gitlab site). As such, a general user is not expected to be able to have success following the instructions.
+
+### [ellipsys2d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d)
+Clone the repo:
+```
+$ git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d.git
+```
+and follow the instructions in the readme.
+
+### [ellipsys3d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d)
+Clone the repo:
+```
+$ git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d.git
+```
+and follow the instructions in the readme.
+
+### [PGL](https://gitlab.windenergy.dtu.dk/frza/PGL)
+Follow the instructions in the readme.
+
+### MATLAB
+Download from the [DTU Software Downloads](https://downloads.cc.dtu.dk/) page, and follow the OS-specific instructions to activate it.
+
+### Pointwise
+*TODO*
+
+### Fieldivew
+*TODO*
+
+### ParaView
+*TODO*
 
 # Configurations
 After everything is installed, make sure to symbolically link the configs to the git repo. Assuming the git repo is cloned to `$HOME/git/configs`, run the following command:
