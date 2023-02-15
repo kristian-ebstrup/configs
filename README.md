@@ -42,19 +42,19 @@ Install `curl` using `apt`, as using `snap` causes some issues for `curl`:
 sudo apt install curl
 ```
 
-## Rust
+### Rust
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-## Starship
+### Starship
 To install Starship, run the command
 ```
 curl -sS https://starship.rs/install.sh | sh
 ```
 The `.bashrc` file is already set-up to use Starship once it is installed.
 
-## Alacritty
+### Alacritty
 Alacritty has a few dependencies, which should be easily installed by running the following:
 ```
 sudo apt-get install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
@@ -66,33 +66,33 @@ cargo install alacritty
 ```
 but if there is an interest in a more involved installation process with more options, look [here](https://github.com/alacritty/alacritty/blob/master/INSTALL.md).
 
-## fzf
+### fzf
 `sudo apt install fzf`
 
 
-## [tmux](https://github.com/tmux/tmux/wiki)
+### [tmux](https://github.com/tmux/tmux/wiki)
 `sudo apt install tmux`
 
-## [neovim](https://github.com/neovim/neovim)
+### [neovim](https://github.com/neovim/neovim)
 Download the newest (stable) version from [here](https://github.com/neovim/neovim/releases/tag/stable), and run
 ```
 sudo apt install ./neovim-linux64.deb
 ```
 
-## [hyperfine](https://github.com/sharkdp/hyperfine)
+### [hyperfine](https://github.com/sharkdp/hyperfine)
 
 ```
 wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
 sudo dpkg -i hyperfine_1.15.0_amd64.deb
 ```
 
-## base16-shell
+### base16-shell
 ```
 git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 ``` 
 
 
-## nvim plugins
+### nvim plugins
 To install Neovim plugins, first install [Packer](https://github.com/wbthomason/packer.nvim) as the plug-in manager:
 ```
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
