@@ -24,6 +24,9 @@ As part of recovering from a reinstallation of a Debian-based distro, re-install
 - FieldView
 - ParaView
 
+*Other*
+- Slack
+
 
 # Installation
 The installation progress here is described sequentially, and isolated steps might depend on preceeding commands or applications.
@@ -138,6 +141,13 @@ Download from the [DTU Software Downloads](https://downloads.cc.dtu.dk/) page, a
 *TODO*
 
 ### ParaView
+*TODO*
+
+## Other
+### Slack
+`snap install slack`
+
+### Zoom
 *TODO*
 
 # Configurations
