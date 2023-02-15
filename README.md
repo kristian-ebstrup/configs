@@ -12,6 +12,7 @@ As part of recovering from a reinstallation of a Debian-based diistro, re-instal
 - MATLAB
 - EllipSys2D
 - EllipSys3D
+- PGL
 - Pointwise
 - FieldView
 - ParaView
