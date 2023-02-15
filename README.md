@@ -7,6 +7,8 @@ As part of recovering from a reinstallation of a Debian-based diistro, re-instal
 - starship
 - rust
 - fzf
+- base16
+- tmux
 - MATLAB
 - EllipSys2D
 - EllipSys3D
