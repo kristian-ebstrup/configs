@@ -7,7 +7,7 @@ As part of recovering from a reinstallation of a Debian-based diistro, re-instal
 - starship
 - rust
 - fzf
-- base16
+- base16-shell
 - tmux
 - MATLAB
 - EllipSys2D
@@ -86,6 +86,20 @@ wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.
 sudo dpkg -i hyperfine_1.15.0_amd64.deb
 ```
 
+## base16-shell
+```
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+``` 
+
+
+## nvim plugins
+To install Neovim plugins, first install [Packer](https://github.com/wbthomason/packer.nvim) as the plug-in manager:
+```
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+Subsequently, open Neovim (e.g. by typing `nvim` in the terminal) and input `:PackerInstall` to automatically install the plugins included in `plugins.lua`.
+
 # Configurations
 After everything is installed, make sure to symbolically link the configs to the git repo. Assuming the git repo is cloned to `$HOME/git/configs`, run the following command:
 ```
@@ -103,4 +117,4 @@ ln -s git/configs/.bash_aliases
 
 To set Alacritty to open when pressing `Meta+Return` (or `Windows+Enter` on most keyboards), go to Custom Shortcuts and add a new shortcut which points to `/home/$USER/.cargo/bin/alacritty`.
 
-Finally, remember to set `caps lock` to be `esc` for better flow in nvim.
+Set `caps lock` to be an extra `esc` for better flow in nvim in Keyboard -> Advanced.
