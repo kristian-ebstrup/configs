@@ -100,3 +100,7 @@ ln -s git/configs/.tmux.conf .
 ln -s git/configs/.bashrc .
 ln -s git/configs/.bash_aliases
 ```
+
+To set Alacritty to open when pressing `Meta+Return` (or `Windows+Enter` on most keyboards), go to Custom Shortcuts and add a new shortcut which points to `/home/$USER/.cargo/bin/alacritty`.
+
+Finally, remember to set `caps lock` to be `esc` for better flow in nvim.
