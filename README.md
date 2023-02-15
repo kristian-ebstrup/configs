@@ -15,6 +15,7 @@ As part of recovering from a reinstallation of a Debian-based diistro, re-instal
 - Pointwise
 - FieldView
 - ParaView
+- hyperfine
 - nvim
 - zettler (or any other markdown editor)
 
