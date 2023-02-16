@@ -150,7 +150,7 @@ $ pipx ensurepath
 ```
 pipx is a "global" variant of pip, and allows access to jedi-language-server across all virtual environments.
 
-To set-up Black, first create a specific virtual environment for Neovim:
+To set-up Black, create a virtual environment for Neovim:
 ```bash
 $ mkdir ~/.local/venv
 $ cd ~/.local/venv
