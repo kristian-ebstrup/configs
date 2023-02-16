@@ -13,7 +13,6 @@ As part of recovering from a reinstallation of a Debian-based distro, re-install
 - tmux
 - hyperfine
 - neovim
-- Zettler
 
 *PhD-related tools*
 - MATLAB
@@ -26,6 +25,8 @@ As part of recovering from a reinstallation of a Debian-based distro, re-install
 
 *Other*
 - Slack
+- Zettler
+- Zoom
 
 
 # Installation
@@ -127,11 +128,6 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ```
 Subsequently, open Neovim (e.g. by typing `nvim` in the terminal) and input `:PackerInstall` to automatically install the plugins included in `plugins.lua`.
 
-### zettlr
-Download the installer from [their website](https://www.zettlr.com/download/linux), and then simply navigate to the folder and install:
-```
-sudo apt install ./Zettlr-2.3.0-amd64.deb
-```
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
 The installation instructions for the tools in this section assumes valid licenses and general access privileges (especially to the DTU Wind Energy gitlab site). As such, a general user is not expected to be able to have success following the instructions.
@@ -168,6 +164,12 @@ Download from the [DTU Software Downloads](https://downloads.cc.dtu.dk/) page, a
 ## Other
 ### Slack
 `snap install slack`
+
+### zettlr
+Download the installer from [their website](https://www.zettlr.com/download/linux), and then simply navigate to the folder and install:
+```
+sudo apt install ./Zettlr-2.3.0-amd64.deb
+```
 
 ### Zoom
 *TODO*
