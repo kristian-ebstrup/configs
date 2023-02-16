@@ -33,7 +33,7 @@ The installation progress here is described sequentially, and isolated steps mig
 
 To begin, it is necessary to set-up `curl` and a SSH key pair.
 
-### SSH
+### SSH (github)
 Upon reinstallation, first set-up a new SSH key pair for accessing github:
 ``` 
 ssh-keygen -t rsa
@@ -43,6 +43,22 @@ and upload the public key to github. Subsequently, clone this repository using s
 git clone git@github.com:kristian-ebstrup/configs.git
 ```
 and leave it for now, and instead first install the most important applications before linking config files.
+
+### SSH (gbar)
+To access DTU's gbar remotely, it is necessary to generate an `ed25519` SSH key pair with a password, and copy the public key to `$HOME/.ssh/authorized_keys` on the gbar. As such, this set-up requires being on DTU's network to set-up gbar for this remote access.
+
+First generate the key pair for accessing gbar:
+```
+ssh-keygen -t ed25519
+```
+and make sure to set-up a password for this key, and ideally name it e.g. `id_gbar` (as this is the name used in the current config files). Subsequently, copy-paste the public key into the `authorized_keys` on the gbar. Assuming no other (relevant) authorized keys are present on the gbar, this can be done as follows:
+```
+cd ~/.ssh
+touch authorized_keys
+cat id_gbar.pub >> authorized_keys
+gup authorized_keys .ssh/
+```
+where `gup` is a function defined in the `.bashrc`.
 
 ### curl
 Install `curl` using `apt`, as using `snap` causes some issues for `curl`:
@@ -110,6 +126,12 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 Subsequently, open Neovim (e.g. by typing `nvim` in the terminal) and input `:PackerInstall` to automatically install the plugins included in `plugins.lua`.
+
+### zettlr
+Download the installer from [their website](https://www.zettlr.com/download/linux), and then simply navigate to the folder and install:
+```
+sudo apt install ./Zettlr-2.3.0-amd64.deb
+```
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
 The installation instructions for the tools in this section assumes valid licenses and general access privileges (especially to the DTU Wind Energy gitlab site). As such, a general user is not expected to be able to have success following the instructions.
