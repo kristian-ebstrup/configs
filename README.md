@@ -128,6 +128,8 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ```
 Subsequently, open Neovim (e.g. by typing `nvim` in the terminal) and input `:PackerInstall` to automatically install the plugins included in `plugins.lua`.
 
+The language server protocols (LSPs) used in this config is 
+
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
 The installation instructions for the tools in this section assumes valid licenses and general access privileges (especially to the DTU Wind Energy gitlab site). As such, a general user is not expected to be able to have success following the instructions.
@@ -192,3 +194,10 @@ ln -s git/configs/.bash_aliases
 To set Alacritty to open when pressing `Meta+Return` (or `Windows+Enter` on most keyboards), go to Custom Shortcuts and add a new shortcut which points to `/home/$USER/.cargo/bin/alacritty`.
 
 Set `caps lock` to be an extra `esc` for better flow in nvim in Keyboard -> Advanced.
+
+To use the mount commands (`mountg` and `mounts` for *mount gbar* and *mount sophia* respectively), make sure to make the directories beforehand:
+``` 
+mkdir /mnt/gdrive
+mkdir /mnt/sdrive
+``` 
+Remember to use `umountg` and `umounts` to un-mount again before powering down.
