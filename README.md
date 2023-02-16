@@ -102,7 +102,7 @@ $ sudo apt install fzf
 
 ### [tmux](https://github.com/tmux/tmux/wiki)
 ```bash
-sudo apt install tmux
+$ sudo apt install tmux
 ```
 
 ### [neovim](https://github.com/neovim/neovim)
@@ -140,8 +140,25 @@ $ mkdir -p ~/.local/bin
 $ curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
 $ chmod +x ~/.local/bin/rust-analyzer
 ```
+and it should be all set. Although, if it doesn't work, make sure that `~/.local/bin/` is in your `$PATH` environment variable.
 
+To set-up jedi-language-server, simply run the following commands:
+```bash
+$ sudo apt install pipx
+$ pipx install jedi-language-server
+$ pipx ensurepath
+```
+pipx is a "global" variant of pip, and allows access to jedi-language-server across all virtual environments.
 
+To set-up Black, first create a specific virtual environment for Neovim:
+```bash
+$ mkdir ~/.local/venv
+$ cd ~/.local/venv
+$ python -m venv nvim
+$ source nvim/bin/activate
+$ pip install black
+```
+The current config file for Neovim looks for this virtual environment.
 
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
