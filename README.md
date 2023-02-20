@@ -182,7 +182,23 @@ and follow the instructions in the readme.
 Follow the instructions in the readme.
 
 ### MATLAB
-Download from the [DTU Software Downloads](https://downloads.cc.dtu.dk/) page, and follow the OS-specific instructions to activate it.
+Log-on to the [MATLAB terminal for DTU](https://se.mathworks.com/academia/tah-portal/danmarks-tekniske-universitet-870549.html) and download the zip file containing the installer, and extract it, e.g. using unzip:
+```bash
+$ cd /home/$USER/Downloads/   
+$ sudo unzip -X -K -d matlab matlab_R2022b_glnxa64.zip
+```
+and from here, move into the subdirectory and run `install`:
+```bash
+$ cd matlab
+$ install
+```
+and follow the instructions.
+
+If this produces the following error:
+```bash
+/home/$USER/Downloads/matlab/bin/glnxa64/MathWorksProductInstaller: error while loading shared libraries: /home/kreb/Downloads/matlab/bin/glnxa64/libexpat.so.1: file too short
+```
+make sure that the `unzip` command is executed with root privileges (i.e. `sudo`) and the `-X -K` flags.
 
 ### Pointwise
 *TODO*
