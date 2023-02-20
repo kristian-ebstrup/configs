@@ -206,7 +206,9 @@ $ sudo apt install ./Zettlr-2.3.0-amd64.deb
 ```
 
 ### Zoom
-*TODO*
+```bash
+$ snap install zoom-client
+```
 
 # Configurations
 After everything is installed, make sure to symbolically link the configs to the git repo. Assuming the git repo is cloned to `$HOME/git/configs`, run the following command:
