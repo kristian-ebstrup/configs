@@ -74,6 +74,11 @@ The installation instructions for the general tools follows in this section. No 
 ```bash
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
+For a convenient feature, also install cargo-watch:
+
+```bash
+$ cargo install cargo-watch
+```
 
 ### Starship
 To install Starship, run the command
