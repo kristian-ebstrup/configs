@@ -212,7 +212,11 @@ make sure that the `unzip` command is executed with root privileges (i.e. `sudo`
 *TODO*
 
 ### ParaView
-*TODO*
+Download the latest version from [here](https://www.paraview.org/download/), and install it to an appropiate folder.
+
+Subsequently, clone the latest Kenneth Lønbæk's plug-in for Paraview from [here](https://gitlab.windenergy.dtu.dk/kenloen/ellipsys_paraview_plugin), e.g. in the plugins folder in ParaView. Then, open up ParaView, go to `Tools -> Manage Plugins -> Load New` and select the Python script in `ellipsys_paraview_plugin`.
+
+Make sure to activate automatic loading of the plug-in.
 
 ## Other
 ### Slack
