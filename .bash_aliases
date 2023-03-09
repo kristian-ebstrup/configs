@@ -12,7 +12,7 @@ alias gbar='ssh -X kreb@login.gbar.dtu.dk -i ~/.ssh/id_gbar'
 alias vpn='sudo openconnect --user=kreb --os=win extra-vpn.ait.dtu.dk'
 
 # Sophia mnt solution (Sergio)
-alias mounts='sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa kreb@sophia1.hpc.ait.dtu.dk:/ /mnt/sdrive'
+alias mounts='sudo sshfs -o allow_other,IdentityFile=/home/kreb/.ssh/id_rsa kreb@sophia1.hpc.ait.dtu.dk:/ /mnt/sdrive'
 alias umounts='sudo umount -l /mnt/sdrive'
 alias shome='cd /mnt/sdrive/home/kreb'
 
