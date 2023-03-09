@@ -6,31 +6,33 @@
 # ------------- #
 # ssh short-cuts
 alias sophia='ssh -X kreb@sophia1.hpc.ait.dtu.dk'
-alias gbar='ssh -X kreb@login.gbar.dtu.dk'
+alias gbar='ssh -X kreb@login.gbar.dtu.dk -i ~/.ssh/id_gbar'
 
 # VPN short-cut
 alias vpn='sudo openconnect --user=kreb --os=win extra-vpn.ait.dtu.dk'
 
 # Sophia mnt solution (Sergio)
-alias mounts='sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa kreb@sophia1.hpc.ait.dtu.dk:/ /mnt/sdrive; export SHOME=/mnt/sdrive/home/kreb'
+alias mounts='sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa kreb@sophia1.hpc.ait.dtu.dk:/ /mnt/sdrive'
 alias umounts='sudo umount -l /mnt/sdrive'
+alias shome='cd /mnt/sdrive/home/kreb'
 
 # gbar mnt solution
-alias mountg='sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_ed25519 kreb@login1.gbar.dtu.dk:/ /mnt/gdrive; export GHOME=/mnt/gdrive/zhome/e9/6/145232/'
+alias mountg='sudo sshfs -o IdentityFile=~/.ssh/id_gbar kreb@login1.gbar.dtu.dk:/ /mnt/gdrive' 
 alias umountg='sudo umount -l /mnt/gdrive'
+alias ghome='cd /mnt/gdrive/zhome/e9/6/145232/'
 
 # scp up/down aliases
 gup() {
-  scp $1 kreb@transfer.gbar.dtu.dk:~/$2
+  scp -r $1 kreb@transfer.gbar.dtu.dk:~/$2
 }
 gdown() {
-  scp kreb@transfer.gbar.dtu.dk:~/$1 $2
+  scp -r kreb@transfer.gbar.dtu.dk:~/$1 $2
 }
 sup() {
-  scp $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
+  scp -r $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
 }
 sdown() {
-  scp kreb@sophia1.hpc.ait.dtu.dk:~/$1 $2
+  scp -r kreb@sophia1.hpc.ait.dtu.dk:~/$1 $2
 }
 
 
@@ -55,7 +57,7 @@ alias matlab='/usr/local/MATLAB/R2022b/bin/matlab'
 alias pv='/home/kreb/flow_visualizers/paraview/bin/paraview'
 
 # Set nvim to start when calling vim
-alias vim='/home/kreb/nvim-linux64/bin/nvim'
+alias vim='/usr/bin/nvim'
 
 # Alias tmux to ensure 256 colors
 alias tmux='TERM=xterm-256color tmux'

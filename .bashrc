@@ -100,18 +100,8 @@ eval "$(starship init bash)"
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-# Look and Feel Tool: Switch Theme
-lightmode() {
-	lookandfeeltool -a org.kde.breeze.desktop
-	base16_gruvbox-light-hard
-}
-darkmode() {
-	lookandfeeltool -a org.kde.breezedark.desktop
-	base16_nord
-}
-
+        source "$BASE16_SHELL/profile_helper.sh"
+        
 # xset
 xset r rate 250 50
 
@@ -121,13 +111,8 @@ xset r rate 250 50
 # export current folder to path
 export PATH=.:$PATH
 
-# ELLIPSYS1D_PATH
-export PATH=$HOME/git/cfd_tools/ellipsys/ellipsys1d/ellipsys1d/tools/Linef/:$PATH
-export PATH=$HOME/git/cfd_tools/ellipsys/ellipsys1d/ellipsys1d/Executables/:$PATH
-
 # ELLIPSYS2D_PATH
 export ELLIPSYS2D_PATH=$HOME/git/cfd_tools/ellipsys/ellipsys2d/Executables
 
-# Ruby paths
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# Created by `pipx` on 2023-02-16 09:31:51
+export PATH="$PATH:/home/kreb/.local/bin"
