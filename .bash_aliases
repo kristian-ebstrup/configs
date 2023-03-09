@@ -17,7 +17,7 @@ alias umounts='sudo umount -l /mnt/sdrive'
 alias shome='cd /mnt/sdrive/home/kreb'
 
 # gbar mnt solution
-alias mountg='sudo sshfs -o IdentityFile=~/.ssh/id_gbar kreb@login1.gbar.dtu.dk:/ /mnt/gdrive' 
+alias mountg='sudo sshfs -o allow_other,IdentityFile=/home/kreb/.ssh/id_gbar kreb@login1.gbar.dtu.dk:/ /mnt/gdrive' 
 alias umountg='sudo umount -l /mnt/gdrive'
 alias ghome='cd /mnt/gdrive/zhome/e9/6/145232/'
 
