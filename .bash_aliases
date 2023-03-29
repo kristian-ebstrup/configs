@@ -23,10 +23,10 @@ alias ghome='cd /mnt/gdrive/zhome/e9/6/145232/'
 
 # scp up/down aliases
 gup() {
-  scp -r $1 kreb@transfer.gbar.dtu.dk:~/$2
+  scp -i /home/kreb/.ssh/id_gbar -r $1 kreb@transfer.gbar.dtu.dk:~/$2
 }
 gdown() {
-  scp -r kreb@transfer.gbar.dtu.dk:~/$1 $2
+  scp -i /home/kreb/.ssh/id_gbar -r kreb@transfer.gbar.dtu.dk:~/$1 $2
 }
 sup() {
   scp -r $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2

@@ -48,6 +48,7 @@ vim.cmd([[
 -- language servers
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.jedi_language_server.setup{}
+require'lspconfig'.fortls.setup{}
 
 -- colorschemes
 vim.cmd([[
@@ -92,13 +93,25 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'rust_analyzer', 'jedi_language_server' }
+local servers = { 'rust_analyzer', 'jedi_language_server', 'fortls'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+
+-- configure fortls separately to use lower-case
+lspconfig.fortls.setup{
+  cmd = {
+    "fortls", 
+    "--notify_init", 
+    "--hover_signature", 
+    "--hover_language=fortran", 
+    "--use_signature_help", 
+    "--lowercase_intrinsics" 
+  }
+}
 
 
 -- luasnip setup
