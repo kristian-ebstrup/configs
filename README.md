@@ -272,3 +272,12 @@ To get a list of available printers, execute the following in a terminal:
 $ smbclient -L //ait-pprintri02.win.dtu.dk/ -U kreb@dtu.dk
 ```
 and input the password.
+
+It is likely that you will have issues getting access to the server, with errors such as `NT_STATUS_ACCESS_DENIED`. In that case, go to `/etc/samba/smb.conf` and add the following lines under `[global]`:
+```conf
+client min protocol = SMB2
+client max protocol = SMB3
+```
+This will force Samba to _not_ use SMB1, which it defaults to (and is disabled by campus network).
+
+
