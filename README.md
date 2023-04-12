@@ -260,3 +260,15 @@ $ mkdir /mnt/gdrive
 $ mkdir /mnt/sdrive
 ``` 
 Remember to use `umountg` and `umounts` to un-mount again before powering down.
+
+
+# Printer
+The printer server at Risø Campus is `\\ait-pprintri02.win.dtu.dk`. To setup a particular printer, simply use the built-in GUI, as demonstrated in the picture:
+
+![Windows Samba Printer Set-Up](printer_config.png)
+
+To get a list of available printers, execute the following in a terminal:
+```bash
+$ smbclient -L //ait-pprintri02.win.dtu.dk/ -U kreb@dtu.dk
+```
+and input the password.
