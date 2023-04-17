@@ -179,7 +179,7 @@ and follow the instructions in the readme.
 ### [ellipsys3d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d)
 Clone the repo:
 ```
-$ git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d.git
+git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d.git
 ```
 and follow the instructions in the readme.
 
@@ -189,13 +189,13 @@ Follow the instructions in the readme.
 ### MATLAB
 Log-on to the [MATLAB terminal for DTU](https://se.mathworks.com/academia/tah-portal/danmarks-tekniske-universitet-870549.html) and download the zip file containing the installer, and extract it, e.g. using unzip:
 ```bash
-$ cd /home/$USER/Downloads/   
-$ sudo unzip -X -K -d matlab matlab_R2022b_glnxa64.zip
+cd /home/$USER/Downloads/   
+sudo unzip -X -K -d matlab matlab_R2022b_glnxa64.zip
 ```
 and from here, move into the subdirectory and run `install`:
 ```bash
-$ cd matlab
-$ install
+cd matlab
+install
 ```
 and follow the instructions.
 
@@ -203,7 +203,7 @@ If this produces the following error:
 ```bash
 /home/$USER/Downloads/matlab/bin/glnxa64/MathWorksProductInstaller: error while loading shared libraries: /home/kreb/Downloads/matlab/bin/glnxa64/libexpat.so.1: file too short
 ```
-make sure that the `unzip` command is executed with root privileges (i.e. `sudo`) and the `-X -K` flags.
+make sure that the `unzip` command is executed with root privileges (i.e. `sudo`) and the `-X -K` flags. Note that _personally_, I cannot get it to work, and have abandoned all hope of getting it to work on Ubuntu.
 
 ### Pointwise
 *TODO*
@@ -214,55 +214,57 @@ make sure that the `unzip` command is executed with root privileges (i.e. `sudo`
 ### ParaView
 Download the latest version from [here](https://www.paraview.org/download/), and install it to an appropiate folder.
 
-Subsequently, clone the latest Kenneth Lønbæk's plug-in for Paraview from [here](https://gitlab.windenergy.dtu.dk/kenloen/ellipsys_paraview_plugin), e.g. in the plugins folder in ParaView. Then, open up ParaView, go to `Tools -> Manage Plugins -> Load New` and select the Python script in `ellipsys_paraview_plugin`.
+Subsequently, clone the latest Kenneth Lønbæk's plug-in for Paraview from [here](https://gitlab.windenergy.dtu.dk/kenloen/ellipsys_paraview_plugin), e.g. in the plugins folder in ParaView. Then, open up ParaView, go to `Tools -> Manage Plugins -> Load New` and select the Python script in `ellipsys_paraview_plugin`. This plug-in allows direct import of the .RST.01 files without postprocessing.
 
 Make sure to activate automatic loading of the plug-in.
 
 ## Other
 ### Slack
 ```bash
-$ snap install slack
+snap install slack
 ```
 
 ### zettlr
 Download the installer from [their website](https://www.zettlr.com/download/linux), and then simply navigate to the folder and install:
 ```bash
-$ sudo apt install ./Zettlr-2.3.0-amd64.deb
+sudo apt install ./Zettlr-2.3.0-amd64.deb
 ```
 
 ### Zoom
 ```bash
-$ snap install zoom-client
+snap install zoom-client
 ```
 
 # Configurations
-After everything is installed, make sure to symbolically link the configs to the git repo. Assuming the git repo is cloned to `$HOME/git/configs`, run the following command:
+
+## Setting up config files
+After everything is installed, make sure to symbolically link the configs to the git repo. Assuming the git repo is cloned to `$HOME/git/configs`, this is done by running the following command:
 ```bash
-$ cd $HOME
-$ mkdir .config/alacritty
-$ mkdir .config/nvim
-$ mkdir .config/nvim/lua
-$ ln -s git/configs/.config/alacritty/alacritty.yml .config/alacritty/
-$ ln -s git/configs/.config/nvim/init.lua .config/nvim/
-$ ln -s git/configs/.config/nvim/lua/plugins.lua .config/nvim/lua/
-$ ln -s git/configs/.tmux.conf .
-$ ln -s git/configs/.bashrc .
-$ ln -s git/configs/.bash_aliases
+cd $HOME
+mkdir .config/alacritty
+mkdir .config/nvim
+mkdir .config/nvim/lua
+ln -s git/configs/.config/alacritty/alacritty.yml .config/alacritty/
+ln -s git/configs/.config/nvim/init.lua .config/nvim/
+ln -s git/configs/.config/nvim/lua/plugins.lua .config/nvim/lua/
+ln -s git/configs/.tmux.conf .
+ln -s git/configs/.bashrc .
+ln -s git/configs/.bash_aliases
 ```
 
-To set Alacritty to open when pressing `Meta+Return` (or `Windows+Enter` on most keyboards), go to Custom Shortcuts and add a new shortcut which points to `/home/$USER/.cargo/bin/alacritty`.
+To set Alacritty to open when pressing `Meta+Return` (or `Windows+Enter` on most keyboards), go to Custom Shortcuts (or similar, depending on your choice of distro) and add a new shortcut which points to `/home/$USER/.cargo/bin/alacritty`.
 
 Set `caps lock` to be an extra `esc` for better flow in nvim in Keyboard -> Advanced.
 
 To use the mount commands (`mountg` and `mounts` for *mount gbar* and *mount sophia* respectively), make sure to make the directories beforehand:
 ```bash
-$ mkdir /mnt/gdrive
-$ mkdir /mnt/sdrive
+mkdir /mnt/gdrive
+mkdir /mnt/sdrive
 ``` 
 Remember to use `umountg` and `umounts` to un-mount again before powering down.
 
 
-# Printer
+## Printer
 The printer server at Risø Campus is `\\ait-pprintri02.win.dtu.dk`. To setup a particular printer, simply use the built-in GUI, as demonstrated in the picture:
 
 ![Windows Samba Printer Set-Up](printer_config.png)
@@ -280,4 +282,8 @@ client max protocol = SMB3
 ```
 This will force Samba to _not_ use SMB1, which it defaults to (and is disabled by campus network).
 
-
+## Miscellaneous
+Kubuntu has a weird quirk where changing displays (e.g. when docking) can make the `plasma-org.kde.plasma.desktop-appletsrc` file go bad, resulting in the loss of the bottom toolbar. This file is found in `~/.config/`, and a backup is kept in this repo. In case of display or GUI weirdness, replace the file on your system with the file from this repo:
+```bash
+cp -f ~/git/configs/.config/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+```

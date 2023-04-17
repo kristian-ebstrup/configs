@@ -180,6 +180,5 @@ vim.cmd([[
 -- Misc key-mappings
 vim.cmd([[
   nnoremap <leader>, :NERDTreeToggle<CR>
-  nnoremap <leader>. :NERDTreeFocus<CR>
 ]])
 

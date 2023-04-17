@@ -31,12 +31,13 @@ return require('packer').startup(function(use)
   use 'itchyny/lightline.vim'
   use 'projekt0n/github-nvim-theme'
 
+  -- git-related
+  use "airblade/vim-gitgutter"
+
   -- markdown preview
   -- install without yarn or npm
   use({
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
-
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 end)

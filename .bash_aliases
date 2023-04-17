@@ -36,25 +36,19 @@ sdown() {
 }
 
 
+# ---------------------------------------- #
+# UTILITY ALIASES
+# https://github.com/kristian-ebstrup/utils
+# ---------------------------------------- #
+alias rst2pv='/home/kreb/git/utils/postprocessing/postprocess_timeseries.sh'
+
+
 # ------------- #
 # MISC. ALIASES
 # ------------- #
 
-# Mads' .bashrc EllipSys compiler
-ce1d() { CWD=$(pwd); cd ~/git/cfd_tools/ellipsys/ellipsys1d/ellipsys1d/Executables/; make -f flowfield.mkf ; cd $CWD; }
-
-# Mads' .bashrc EllipSys runner
-alias flo='rm grid.points; flowfield input.dat > log.txt'
-
-
-# set keyboard repeat rate shortcut
-
-# MATLAB shortcut
-alias matlab='/usr/local/MATLAB/R2022b/bin/matlab'
-
-# Fieldview and Paraview
-# alias fv='/home/kristian/flow_visualizers/fieldview/fv/bin/fv'
-alias pv='/home/kreb/flow_visualizers/paraview/bin/paraview'
+# Paraview
+alias pv='/home/kreb/ParaView-5.11.0-MPI-Linux-Python3.9-x86_64/bin/paraview'
 
 # Set nvim to start when calling vim
 alias vim='/usr/bin/nvim'
@@ -95,3 +89,16 @@ alias l='ls -CF'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# ----------------------- #
+# CURRENTLY UNUSED ALIASES
+# ----------------------- #
+
+# Mads' .bashrc EllipSys compiler
+# ce1d() { CWD=$(pwd); cd ~/git/cfd_tools/ellipsys/ellipsys1d/ellipsys1d/Executables/; make -f flowfield.mkf ; cd $CWD; }
+
+# Mads' EllipSys runner
+# alias flo='rm grid.points; flowfield input.dat > log.txt'
+
+# MATLAB shortcut
+#alias matlab='/usr/local/MATLAB/R2022b/bin/matlab'
