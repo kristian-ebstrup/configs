@@ -37,10 +37,12 @@ sdown() {
 
 
 # ---------------------------------------- #
-# UTILITY ALIASES
+# UTILITY ALIASES/FUNCTIONS
 # https://github.com/kristian-ebstrup/utils
 # ---------------------------------------- #
-alias rst2pv='/home/kreb/git/utils/postprocessing/postprocess_timeseries.sh'
+rst2pv() {
+  /home/kreb/git/utils/postprocessing/rst2pv.sh "$@"
+}
 
 
 # ------------- #
