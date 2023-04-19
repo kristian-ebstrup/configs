@@ -111,10 +111,22 @@ $ sudo apt install tmux
 ```
 
 ### [neovim](https://github.com/neovim/neovim)
-Download the newest (stable) version from [here](https://github.com/neovim/neovim/releases/tag/stable), and run
+Locally, download the newest (stable) version from [here](https://github.com/neovim/neovim/releases/tag/stable), and run
 ```bash
 $ sudo apt install ./neovim-linux64.deb
 ```
+If trying to set-up on a remote server without `sudo` access, the set-up is a bit more complicated, as we need to build and install Neovim ourselves. A step-by-step guide that worked for me on Sophia follows:
+
+1. Clone the Neovim repository to folder of choice:
+     `git clone https://github.com/neovim/neovim`
+2. Load required modules for compilation:
+     `module load GCC/12.2.0 && module load CMake/3.24.3-GCCcore-12.2.0`.
+3. Move into the git repo and build for Sophia:
+     `cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=/home/USER/.local/share/nvim`
+4. Install to the location specified in the above build:
+     `make install`
+
+Ideally, this should set-up Neovim on Sophia, and your local config file _should_ work on Sophia as well.
 
 ### [hyperfine](https://github.com/sharkdp/hyperfine)
 
@@ -153,7 +165,7 @@ $ sudo apt install pipx
 $ pipx install jedi-language-server
 $ pipx ensurepath
 ```
-pipx is a "global" variant of pip, and allows access to jedi-language-server across all virtual environments.
+pipx is a "global" variant of pip, and allows access to jedi-language-server across all virtual environments. In case of setting up Neovim on a remote server (e.g. Sophia), `sudo` is not an option, and each virtual environment needs to have jedi-language-server installed.
 
 To set-up Black, create a virtual environment for Neovim:
 ```bash
@@ -161,9 +173,10 @@ $ mkdir ~/.local/venv
 $ cd ~/.local/venv
 $ python -m venv nvim
 $ source nvim/bin/activate
+$ pip install neovim
 $ pip install black
 ```
-The current config file for Neovim looks for this virtual environment.
+The current config file for Neovim looks for this virtual environment by default.
 
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
