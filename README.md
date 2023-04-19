@@ -143,7 +143,7 @@ Similarly to Sophia, setting Neovim up on gbar can be a bit finicky. Here's a st
      `CC=/appl/gcc/12.2.0-binutils-2.39/bin/gcc`
 4. Force `cmake` to use this compiler replacing `${CMAKE_C_COMPILER}` with `${CC}` in `CMakeLists.txt`, as otherwise an out-dated compiler will be used without some necessary standard libraries. 
 4. Move into the git repo and build for gbar:
-     `cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=/home/USER/.local/share/nvim`
+     `cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$HOME/.local/share/nvim`
 5. Install to the location specified in the above build:
      `make install`
 
