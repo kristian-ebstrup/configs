@@ -270,6 +270,7 @@ snap install zoom-client
 # Configurations
 
 ## Setting up config files
+### Local
 After everything is installed, make sure to symbolically link the configs to the git repo. Assuming the git repo is cloned to `$HOME/git/configs`, this is done by running the following command:
 ```bash
 cd $HOME
@@ -295,6 +296,13 @@ mkdir /mnt/sdrive
 ``` 
 Remember to use `umountg` and `umounts` to un-mount again before powering down.
 
+### gbar
+gbar uses a modified `.bashrc` and `.bash_aliases`, so make sure to link to those instead of the "default" ones:
+```bash
+cd $HOME
+ln -s git/configs/._gbar_bashrc .bashrc
+ln -s git/configs/._gbar_bash_aliases .bash_aliases
+```
 
 ## Printer
 The printer server at Risø Campus is `\\ait-pprintri02.win.dtu.dk`. To setup a particular printer, simply use the built-in GUI, as demonstrated in the picture:
