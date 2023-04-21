@@ -45,21 +45,41 @@ $ git clone git@github.com:kristian-ebstrup/configs.git
 ```
 and leave it for now, and instead first install the most important applications before linking config files.
 
-### SSH (gbar)
-To access DTU's gbar remotely, it is necessary to generate an `ed25519` SSH key pair with a password, and copy the public key to `$HOME/.ssh/authorized_keys` on the gbar. As such, this set-up requires being on DTU's network to set-up gbar for this remote access.
+#### Clusters
+To set-up SSH access to a private account on github on the clusters (as github doesn't support pushing using https, apparently), it's necessary to generate a key pair on the cluster, and make sure to add it to the ssh-agent such that it is recognized as a private rather than public key:
 
-First generate the key pair for accessing gbar:
+1. Generate the key pair with a password and name that makes sense (e.g. `gbar_github` or `sophia_github`):
 ```bash
 $ ssh-keygen -t ed25519
 ```
-and make sure to set-up a password for this key, and ideally name it e.g. `id_gbar` (as this is the name used in the current config files). Subsequently, copy-paste the public key into the `authorized_keys` on the gbar. Assuming no other (relevant) authorized keys are present on the gbar, this can be done as follows:
+2. Upload the public key to your github account ([https://github.com/settings/keys]()).
+3. Start `ssh-agent` and `ssh-add` the key (e.g. using `gbar_github`):
+```bash
+$ eval `ssh-agent -s`
+$ ssh_add ~/.ssh/gbar_github
+```
+4. For github repos cloned using https, `cd` into those repos and change the origin url to the ssh url. For example, for this repository:
+```bash
+$ git remote set-url origin git@github.com:kristian-ebstrup/configs.git
+```
+
+And that should do it.
+
+### SSH (clusters)
+To access DTU's clusters (gbar or sophia) remotely _without needing to rely in VPN_, it is necessary to generate an `ed25519` SSH key pair with a password, and copy the public key to `$HOME/.ssh/authorized_keys` on the cluster of interest. As such, this set-up requires being on DTU's network to set-up for this remote access.
+
+First generate the key pair:
+```bash
+$ ssh-keygen -t ed25519
+```
+and make sure to set-up a password for this key, and ideally name it e.g. `id_gbar` or `id_sophia` (as this is the names used in the current config files). Subsequently, copy-paste the public key into the `authorized_keys` on the cluster. For example, assuming no other (relevant) authorized keys are present on the gbar, this can be done as follows:
 ```bash
 $ cd ~/.ssh
 $ touch authorized_keys
 $ cat id_gbar.pub >> authorized_keys
 $ gup authorized_keys .ssh/
 ```
-where `gup` is a function defined in the `.bashrc`.
+where `gup` is a function defined in the `.bashrc`. For sophia, simply replace `id_gbar.pub` with `id_sophia.pub`, and `gup` with `sup`.
 
 ### curl
 Install `curl` using `apt`, as using `snap` causes some issues for `curl`:
