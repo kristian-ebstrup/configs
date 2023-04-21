@@ -180,5 +180,9 @@ vim.cmd([[
 -- Misc key-mappings
 vim.cmd([[
   nnoremap <leader>, :NERDTreeToggle<CR>
+
+  nnoremap <leader>o viw<esc>a)<esc>hbi(<esc>lel
+  nnoremap <leader>p viw<esc>a]<esc>hbi[<esc>lel
+  nnoremap <leader>i viw<esc>a}<esc>hbi{<esc>lel
 ]])
 

@@ -5,28 +5,28 @@ This repository contains my configuration files for the most critical applicatio
 As part of recovering from a reinstallation of a Debian-based distro, re-install the following:
 
 *General tools*
-- Alacritty
-- Starship
-- Rust
-- fzf
-- base16-shell
-- tmux
-- hyperfine
-- neovim
+- [Alacritty](#alacritty)
+- [Starship](#starship)
+- [Rust](#rust)
+- [fzf](#fzf)
+- [base16-shell](#base16-shell)
+- [tmux](#tmux)
+- [hyperfine](#hyperfine)
+- [neovim](#neovim)
 
 *PhD-related tools*
-- MATLAB
-- EllipSys2D
-- EllipSys3D
-- PGL
-- Pointwise
-- FieldView
-- ParaView
+- [MATLAB](#matlab)
+- [EllipSys2D](#e2d)
+- [EllipSys3D](#e3d)
+- [PGL](#pgl)
+- [Pointwise](#pointwise)
+- [FieldView](#fieldview)
+- [ParaView](#paraview)
 
 *Other*
-- Slack
-- Zettler
-- Zoom
+- [Slack](#slack)
+- [Zettlr](#zettlr)
+- [Zoom](#zoom)
 
 
 # Installation
@@ -90,7 +90,7 @@ $ sudo apt install curl
 ## General tools
 The installation instructions for the general tools follows in this section. No special credentials are necessary to install and set-up the general tools using my configs.
 
-### Rust
+### <a name="#rust"></a>Rust
 ```bash
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
@@ -100,14 +100,14 @@ For a convenient feature, also install cargo-watch:
 $ cargo install cargo-watch
 ```
 
-### Starship
+### <a name="#starship"></a>Starship
 To install Starship, run the command
 ```bash
 $ curl -sS https://starship.rs/install.sh | sh
 ```
 The `.bashrc` file is already set-up to use Starship once it is installed.
 
-### Alacritty
+### <a name="#alacritty"></a>Alacritty
 Alacritty has a few dependencies, which should be easily installed by running the following:
 ```bash
 $ sudo apt-get install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
@@ -119,18 +119,18 @@ $ cargo install alacritty
 ```
 but if there is an interest in a more involved installation process with more options, look [here](https://github.com/alacritty/alacritty/blob/master/INSTALL.md).
 
-### fzf
+### <a name="#fzf"></a>fzf
 ```bash
 $ sudo apt install fzf
 ```
 
 
-### [tmux](https://github.com/tmux/tmux/wiki)
+### <a name="#tmux"></a>[tmux](https://github.com/tmux/tmux/wiki)
 ```bash
 $ sudo apt install tmux
 ```
 
-### [neovim](https://github.com/neovim/neovim)
+### <a name="#neovim"></a>[neovim](https://github.com/neovim/neovim)
 
 #### Setting up locally
 Locally, download the newest (stable) version from [here](https://github.com/neovim/neovim/releases/tag/stable), and run
@@ -185,20 +185,7 @@ $ cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$HOME/.
 $ make install
 ```
 
-### [hyperfine](https://github.com/sharkdp/hyperfine)
-
-```bash
-$ wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
-$ sudo dpkg -i hyperfine_1.15.0_amd64.deb
-```
-
-### base16-shell
-```bash
-$ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-``` 
-
-
-### nvim plugins
+#### Plugins
 To install Neovim plugins, first install [Packer](https://github.com/wbthomason/packer.nvim) as the plug-in manager:
 ```bash
 $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
@@ -235,28 +222,42 @@ $ pip install black
 ```
 The current config file for Neovim looks for this virtual environment by default.
 
+### [hyperfine](https://github.com/sharkdp/hyperfine)
+
+```bash
+$ wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+$ sudo dpkg -i hyperfine_1.15.0_amd64.deb
+```
+
+### <a name="#base16-shell"></a>base16-shell
+```bash
+$ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+``` 
+
+
+
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
 The installation instructions for the tools in this section assumes valid licenses and general access privileges (especially to the DTU Wind Energy gitlab site). As such, a general user is not expected to be able to have success following the instructions.
 
-### [ellipsys2d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d)
+### <a name="#e2d"></a>[ellipsys2d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d)
 Clone the repo:
 ```bash
 $ git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d.git
 ```
 and follow the instructions in the readme.
 
-### [ellipsys3d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d)
+### <a name="#e3d"></a>[ellipsys3d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d)
 Clone the repo:
 ```
 git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d.git
 ```
 and follow the instructions in the readme.
 
-### [PGL](https://gitlab.windenergy.dtu.dk/frza/PGL)
+### <a name="#pgl"></a>[PGL](https://gitlab.windenergy.dtu.dk/frza/PGL)
 Follow the instructions in the readme.
 
-### MATLAB
+### <a name="#matlab"></a>MATLAB
 Log-on to the [MATLAB terminal for DTU](https://se.mathworks.com/academia/tah-portal/danmarks-tekniske-universitet-870549.html) and download the zip file containing the installer, and extract it, e.g. using unzip:
 ```bash
 cd /home/$USER/Downloads/   
@@ -275,13 +276,13 @@ If this produces the following error:
 ```
 make sure that the `unzip` command is executed with root privileges (i.e. `sudo`) and the `-X -K` flags. Note that _personally_, I cannot get it to work, and have abandoned all hope of getting it to work on Ubuntu.
 
-### Pointwise
+### <a name="#pointwise"></a>Pointwise
 *TODO*
 
-### Fieldivew
+### <a name="#fieldview"></a>Fieldivew
 *TODO*
 
-### ParaView
+### <a name="#paraview"></a>ParaView
 Download the latest version from [here](https://www.paraview.org/download/), and install it to an appropiate folder.
 
 Subsequently, clone the latest Kenneth Lønbæk's plug-in for Paraview from [here](https://gitlab.windenergy.dtu.dk/kenloen/ellipsys_paraview_plugin), e.g. in the plugins folder in ParaView. Then, open up ParaView, go to `Tools -> Manage Plugins -> Load New` and select the Python script in `ellipsys_paraview_plugin`. This plug-in allows direct import of the .RST.01 files without postprocessing.
@@ -289,18 +290,18 @@ Subsequently, clone the latest Kenneth Lønbæk's plug-in for Paraview from [her
 Make sure to activate automatic loading of the plug-in.
 
 ## Other
-### Slack
+### <a name="#slack"></a>Slack
 ```bash
 snap install slack
 ```
 
-### zettlr
+### <a name="#zettlr"></a>zettlr
 Download the installer from [their website](https://www.zettlr.com/download/linux), and then simply navigate to the folder and install:
 ```bash
 sudo apt install ./Zettlr-2.3.0-amd64.deb
 ```
 
-### Zoom
+### <a name="#zoom"></a>Zoom
 ```bash
 snap install zoom-client
 ```
