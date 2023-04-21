@@ -141,14 +141,22 @@ $ sudo apt install ./neovim-linux64.deb
 #### Set-up on Sophia
 If trying to set-up on a remote server without `sudo` access, the set-up is a bit more complicated, as we need to build and install Neovim ourselves. A step-by-step guide that worked for me on Sophia follows:
 
-1. Clone the Neovim repository to folder of choice:
-     `git clone https://github.com/neovim/neovim`
+1. Clone the Neovim repository to folder of choice
+```bash
+$ git clone https://github.com/neovim/neovim
+```
 2. Load required modules for compilation:
-     `module load GCC/12.2.0 && module load CMake/3.24.3-GCCcore-12.2.0`.
+```bash
+$ module load GCC/12.2.0 && module load CMake/3.24.3-GCCcore-12.2.0
+```
 3. Move into the git repo and build for Sophia:
-     `cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=/home/USER/.local/share/nvim`
+```bash
+$ cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=/home/USER/.local/share/nvim
+```
 4. Install to the location specified in the above build:
-     `make install`
+```bash
+make install
+```
 
 Ideally, this should set-up Neovim on Sophia, and your local config file _should_ work on Sophia as well.
 
@@ -156,16 +164,26 @@ Ideally, this should set-up Neovim on Sophia, and your local config file _should
 Similarly to Sophia, setting Neovim up on gbar can be a bit finicky. Here's a step-by-step guide that worked for me on gbar:
 
 1. Clone the Neovim repository to folder of choice:
-     `git clone https://github.com/neovim/neovim`
+```bash
+$ git clone https://github.com/neovim/neovim
+```
 2. Load required modules for compilation:
-     `module load gcc/12.2.0 && module load cmake/3.26.3 && module load gcc/12.2.0-binutils-2.39`
+```bash
+$ module load gcc/12.2.0 && module load cmake/3.26.3 && module load gcc/12.2.0-binutils-2.39
+```
 3. Save an environment variable to the loaded GNU compiler:
-     `CC=/appl/gcc/12.2.0-binutils-2.39/bin/gcc`
-4. Force `cmake` to use this compiler replacing `${CMAKE_C_COMPILER}` with `${CC}` in `CMakeLists.txt`, as otherwise an out-dated compiler will be used without some necessary standard libraries. 
-4. Move into the git repo and build for gbar:
-     `cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$HOME/.local/share/nvim`
-5. Install to the location specified in the above build:
-     `make install`
+```bash
+$ CC=/appl/gcc/12.2.0-binutils-2.39/bin/gcc
+```
+5. Force `cmake` to use this compiler replacing `${CMAKE_C_COMPILER}` with `${CC}` in `CMakeLists.txt`, as otherwise an out-dated compiler will be used without some necessary standard libraries. 
+6. Move into the git repo and build for gbar:
+```bash
+$ cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$HOME/.local/share/nvim
+```
+7. Install to the location specified in the above build:
+```bash
+$ make install
+```
 
 ### [hyperfine](https://github.com/sharkdp/hyperfine)
 
