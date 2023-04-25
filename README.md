@@ -5,28 +5,28 @@ This repository contains my configuration files for the most critical applicatio
 As part of recovering from a reinstallation of a Debian-based distro, re-install the following:
 
 *General tools*
-- Alacritty
-- Starship
-- Rust
-- fzf
-- base16-shell
-- tmux
-- hyperfine
-- neovim
+- [Alacritty](#alacritty)
+- [Starship](#starship)
+- [Rust](#rust)
+- [fzf](#fzf)
+- [base16-shell](#base16-shell)
+- [tmux](#tmux)
+- [hyperfine](#hyperfine)
+- [neovim](#neovim)
 
 *PhD-related tools*
-- MATLAB
-- EllipSys2D
-- EllipSys3D
-- PGL
-- Pointwise
-- FieldView
-- ParaView
+- [MATLAB](#matlab)
+- [EllipSys2D](#e2d)
+- [EllipSys3D](#e3d)
+- [PGL](#pgl)
+- [Pointwise](#pointwise)
+- [FieldView](#fieldview)
+- [ParaView](#paraview)
 
 *Other*
-- Slack
-- Zettler
-- Zoom
+- [Slack](#slack)
+- [Zettlr](#zettlr)
+- [Zoom](#zoom)
 
 
 # Installation
@@ -45,21 +45,41 @@ $ git clone git@github.com:kristian-ebstrup/configs.git
 ```
 and leave it for now, and instead first install the most important applications before linking config files.
 
-### SSH (gbar)
-To access DTU's gbar remotely, it is necessary to generate an `ed25519` SSH key pair with a password, and copy the public key to `$HOME/.ssh/authorized_keys` on the gbar. As such, this set-up requires being on DTU's network to set-up gbar for this remote access.
+#### Clusters
+To set-up SSH access to a private account on github on the clusters (as github doesn't support pushing using https, apparently), it's necessary to generate a key pair on the cluster, and make sure to add it to the ssh-agent such that it is recognized as a private rather than public key:
 
-First generate the key pair for accessing gbar:
+1. Generate the key pair with a password and name that makes sense (e.g. `gbar_github` or `sophia_github`):
 ```bash
 $ ssh-keygen -t ed25519
 ```
-and make sure to set-up a password for this key, and ideally name it e.g. `id_gbar` (as this is the name used in the current config files). Subsequently, copy-paste the public key into the `authorized_keys` on the gbar. Assuming no other (relevant) authorized keys are present on the gbar, this can be done as follows:
+2. Upload the public key to your github account ([https://github.com/settings/keys]()).
+3. Start `ssh-agent` and `ssh-add` the key (e.g. using `gbar_github`):
+```bash
+$ eval `ssh-agent -s`
+$ ssh_add ~/.ssh/gbar_github
+```
+4. For github repos cloned using https, `cd` into those repos and change the origin url to the ssh url. For example, for this repository:
+```bash
+$ git remote set-url origin git@github.com:kristian-ebstrup/configs.git
+```
+
+And that should do it.
+
+### SSH (clusters)
+To access DTU's clusters (gbar or sophia) remotely _without needing to rely in VPN_, it is necessary to generate an `ed25519` SSH key pair with a password, and copy the public key to `$HOME/.ssh/authorized_keys` on the cluster of interest. As such, this set-up requires being on DTU's network to set-up for this remote access.
+
+First generate the key pair:
+```bash
+$ ssh-keygen -t ed25519
+```
+and make sure to set-up a password for this key, and ideally name it e.g. `id_gbar` or `id_sophia` (as this is the names used in the current config files). Subsequently, copy-paste the public key into the `authorized_keys` on the cluster. For example, assuming no other (relevant) authorized keys are present on the gbar, this can be done as follows:
 ```bash
 $ cd ~/.ssh
 $ touch authorized_keys
 $ cat id_gbar.pub >> authorized_keys
 $ gup authorized_keys .ssh/
 ```
-where `gup` is a function defined in the `.bashrc`.
+where `gup` is a function defined in the `.bashrc`. For sophia, simply replace `id_gbar.pub` with `id_sophia.pub`, and `gup` with `sup`.
 
 ### curl
 Install `curl` using `apt`, as using `snap` causes some issues for `curl`:
@@ -70,7 +90,7 @@ $ sudo apt install curl
 ## General tools
 The installation instructions for the general tools follows in this section. No special credentials are necessary to install and set-up the general tools using my configs.
 
-### Rust
+### <a name="#rust"></a>Rust
 ```bash
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
@@ -80,14 +100,14 @@ For a convenient feature, also install cargo-watch:
 $ cargo install cargo-watch
 ```
 
-### Starship
+### <a name="#starship"></a>Starship
 To install Starship, run the command
 ```bash
 $ curl -sS https://starship.rs/install.sh | sh
 ```
 The `.bashrc` file is already set-up to use Starship once it is installed.
 
-### Alacritty
+### <a name="#alacritty"></a>Alacritty
 Alacritty has a few dependencies, which should be easily installed by running the following:
 ```bash
 $ sudo apt-get install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
@@ -99,38 +119,74 @@ $ cargo install alacritty
 ```
 but if there is an interest in a more involved installation process with more options, look [here](https://github.com/alacritty/alacritty/blob/master/INSTALL.md).
 
-### fzf
+### <a name="#fzf"></a>fzf
 ```bash
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
 
-### [tmux](https://github.com/tmux/tmux/wiki)
+### <a name="#tmux"></a>[tmux](https://github.com/tmux/tmux/wiki)
 ```bash
 $ sudo apt install tmux
 ```
 
-### [neovim](https://github.com/neovim/neovim)
-Download the newest (stable) version from [here](https://github.com/neovim/neovim/releases/tag/stable), and run
+### <a name="#neovim"></a>[neovim](https://github.com/neovim/neovim)
+
+#### Setting up locally
+Locally, download the newest (stable) version from [here](https://github.com/neovim/neovim/releases/tag/stable), and run
 ```bash
 $ sudo apt install ./neovim-linux64.deb
 ```
 
-### [hyperfine](https://github.com/sharkdp/hyperfine)
+#### Set-up on Sophia
+If trying to set-up on a remote server without `sudo` access, the set-up is a bit more complicated, as we need to build and install Neovim ourselves. A step-by-step guide that worked for me on Sophia follows:
 
+1. Clone the Neovim repository to folder of choice
 ```bash
-$ wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
-$ sudo dpkg -i hyperfine_1.15.0_amd64.deb
+$ git clone https://github.com/neovim/neovim
+```
+2. Load required modules for compilation:
+```bash
+$ module load GCC/12.2.0 && module load CMake/3.24.3-GCCcore-12.2.0
+```
+3. Move into the git repo and build for Sophia:
+```bash
+$ cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=/home/USER/.local/share/nvim
+```
+4. Install to the location specified in the above build:
+```bash
+make install
 ```
 
-### base16-shell
+Ideally, this should set-up Neovim on Sophia, and your local config file _should_ work on Sophia as well.
+
+#### Set-up on gbar
+Similarly to Sophia, setting Neovim up on gbar can be a bit finicky. Here's a step-by-step guide that worked for me on gbar:
+
+1. Clone the Neovim repository to folder of choice:
 ```bash
-$ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-``` 
+$ git clone https://github.com/neovim/neovim
+```
+2. Load required modules for compilation:
+```bash
+$ module load gcc/12.2.0 && module load cmake/3.26.3 && module load gcc/12.2.0-binutils-2.39
+```
+3. Save an environment variable to the loaded GNU compiler:
+```bash
+$ CC=/appl/gcc/12.2.0-binutils-2.39/bin/gcc
+```
+5. Force `cmake` to use this compiler replacing `${CMAKE_C_COMPILER}` with `${CC}` in `CMakeLists.txt`, as otherwise an out-dated compiler will be used without some necessary standard libraries. 
+6. Move into the git repo and build for gbar:
+```bash
+$ cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$HOME/.local/share/nvim
+```
+7. Install to the location specified in the above build:
+```bash
+$ make install
+```
 
-
-### nvim plugins
+#### Plugins
 To install Neovim plugins, first install [Packer](https://github.com/wbthomason/packer.nvim) as the plug-in manager:
 ```bash
 $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
@@ -154,7 +210,7 @@ $ sudo apt install pipx
 $ pipx install jedi-language-server
 $ pipx ensurepath
 ```
-pipx is a "global" variant of pip, and allows access to jedi-language-server across all virtual environments.
+pipx is a "global" variant of pip, and allows access to jedi-language-server across all virtual environments. In case of setting up Neovim on a remote server (e.g. Sophia), `sudo` is not an option, and each virtual environment needs to have jedi-language-server installed.
 
 To set-up Black, create a virtual environment for Neovim:
 ```bash
@@ -162,32 +218,47 @@ $ mkdir ~/.local/venv
 $ cd ~/.local/venv
 $ python -m venv nvim
 $ source nvim/bin/activate
+$ pip install neovim
 $ pip install black
 ```
-The current config file for Neovim looks for this virtual environment.
+The current config file for Neovim looks for this virtual environment by default.
+
+### [hyperfine](https://github.com/sharkdp/hyperfine)
+
+```bash
+$ wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+$ sudo dpkg -i hyperfine_1.15.0_amd64.deb
+```
+
+### <a name="#base16-shell"></a>base16-shell
+```bash
+$ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+``` 
+
+
 
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
 The installation instructions for the tools in this section assumes valid licenses and general access privileges (especially to the DTU Wind Energy gitlab site). As such, a general user is not expected to be able to have success following the instructions.
 
-### [ellipsys2d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d)
+### <a name="#e2d"></a>[ellipsys2d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d)
 Clone the repo:
 ```bash
 $ git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys2d.git
 ```
 and follow the instructions in the readme.
 
-### [ellipsys3d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d)
+### <a name="#e3d"></a>[ellipsys3d](https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d)
 Clone the repo:
 ```
 git clone https://gitlab.windenergy.dtu.dk/EllipSys/ellipsys3d.git
 ```
 and follow the instructions in the readme.
 
-### [PGL](https://gitlab.windenergy.dtu.dk/frza/PGL)
+### <a name="#pgl"></a>[PGL](https://gitlab.windenergy.dtu.dk/frza/PGL)
 Follow the instructions in the readme.
 
-### MATLAB
+### <a name="#matlab"></a>MATLAB
 Log-on to the [MATLAB terminal for DTU](https://se.mathworks.com/academia/tah-portal/danmarks-tekniske-universitet-870549.html) and download the zip file containing the installer, and extract it, e.g. using unzip:
 ```bash
 cd /home/$USER/Downloads/   
@@ -206,13 +277,13 @@ If this produces the following error:
 ```
 make sure that the `unzip` command is executed with root privileges (i.e. `sudo`) and the `-X -K` flags. Note that _personally_, I cannot get it to work, and have abandoned all hope of getting it to work on Ubuntu.
 
-### Pointwise
+### <a name="#pointwise"></a>Pointwise
 *TODO*
 
-### Fieldivew
+### <a name="#fieldview"></a>Fieldivew
 *TODO*
 
-### ParaView
+### <a name="#paraview"></a>ParaView
 Download the latest version from [here](https://www.paraview.org/download/), and install it to an appropiate folder.
 
 Subsequently, clone the latest Kenneth Lønbæk's plug-in for Paraview from [here](https://gitlab.windenergy.dtu.dk/kenloen/ellipsys_paraview_plugin), e.g. in the plugins folder in ParaView. Then, open up ParaView, go to `Tools -> Manage Plugins -> Load New` and select the Python script in `ellipsys_paraview_plugin`. This plug-in allows direct import of the .RST.01 files without postprocessing.
@@ -220,18 +291,18 @@ Subsequently, clone the latest Kenneth Lønbæk's plug-in for Paraview from [her
 Make sure to activate automatic loading of the plug-in.
 
 ## Other
-### Slack
+### <a name="#slack"></a>Slack
 ```bash
 snap install slack
 ```
 
-### zettlr
+### <a name="#zettlr"></a>zettlr
 Download the installer from [their website](https://www.zettlr.com/download/linux), and then simply navigate to the folder and install:
 ```bash
 sudo apt install ./Zettlr-2.3.0-amd64.deb
 ```
 
-### Zoom
+### <a name="#zoom"></a>Zoom
 ```bash
 snap install zoom-client
 ```
@@ -239,6 +310,7 @@ snap install zoom-client
 # Configurations
 
 ## Setting up config files
+### Local
 After everything is installed, make sure to symbolically link the configs to the git repo. Assuming the git repo is cloned to `$HOME/git/configs`, this is done by running the following command:
 ```bash
 cd $HOME
@@ -264,6 +336,13 @@ mkdir /mnt/sdrive
 ``` 
 Remember to use `umountg` and `umounts` to un-mount again before powering down.
 
+### gbar
+gbar uses a modified `.bashrc` and `.bash_aliases`, so make sure to link to those instead of the "default" ones:
+```bash
+cd $HOME
+ln -s git/configs/._gbar_bashrc .bashrc
+ln -s git/configs/._gbar_bash_aliases .bash_aliases
+```
 
 ## Printer
 The printer server at Risø Campus is `\\ait-pprintri02.win.dtu.dk`. To setup a particular printer, simply use the built-in GUI, as demonstrated in the picture:
