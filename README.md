@@ -101,7 +101,8 @@ but if there is an interest in a more involved installation process with more op
 
 ### fzf
 ```bash
-$ sudo apt install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```
 
 

@@ -5,7 +5,7 @@
 # SCP/SSH ALIASES
 # ------------- #
 # ssh short-cuts
-alias sophia='ssh -X kreb@sophia1.hpc.ait.dtu.dk'
+alias sophia='ssh -X kreb@sophia1.hpc.ait.dtu.dk -i ~/.ssh/id_sophia'
 alias gbar='ssh -X kreb@login.gbar.dtu.dk -i ~/.ssh/id_gbar'
 
 # VPN short-cut
@@ -29,10 +29,10 @@ gdown() {
   scp -i /home/kreb/.ssh/id_gbar -r kreb@transfer.gbar.dtu.dk:~/$1 $2
 }
 sup() {
-  scp -r $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
+  scp -i /home/kreb/.ssh/id_sophia -r $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
 }
 sdown() {
-  scp -r kreb@sophia1.hpc.ait.dtu.dk:~/$1 $2
+  scp -i /home/kreb/.ssh/id_sophia -r kreb@sophia1.hpc.ait.dtu.dk:~/$1 $2
 }
 
 

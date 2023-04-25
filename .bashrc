@@ -116,3 +116,6 @@ export ELLIPSYS2D_PATH=$HOME/git/cfd_tools/ellipsys/ellipsys2d/Executables
 
 # Created by `pipx` on 2023-02-16 09:31:51
 export PATH="$PATH:/home/kreb/.local/bin"
+
+# fzf addition during installation
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
