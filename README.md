@@ -30,11 +30,13 @@ As part of recovering from a reinstallation of a Debian-based distro, re-install
 
 
 # Installation
+
 The installation progress here is described sequentially, and isolated steps might depend on preceeding commands or applications.
 
 To begin, it is necessary to set-up `curl` and a SSH key pair.
 
-### SSH (github)
+## Setting up SSH
+
 Upon reinstallation, first set-up a new SSH key pair for accessing github:
 ```bash
 $ ssh-keygen -t rsa
@@ -45,8 +47,11 @@ $ git clone git@github.com:kristian-ebstrup/configs.git
 ```
 and leave it for now, and instead first install the most important applications before linking config files.
 
-#### Clusters
-To set-up SSH access to a private account on github on the clusters (as github doesn't support pushing using https, apparently), it's necessary to generate a key pair on the cluster, and make sure to add it to the ssh-agent such that it is recognized as a private rather than public key:
+### Accessing your private GitHub repos on the clusters
+
+To set-up SSH access to a private account on github on the clusters (as github doesn't support pushing using https, apparently), it's necessary to generate a key pair on the cluster, and make sure to add it to the ssh-agent such that it is recognized as a private rather than public key.
+
+The following instructions assumes being logged into a cluster:
 
 1. Generate the key pair with a password and name that makes sense (e.g. `gbar_github` or `sophia_github`):
 ```bash
@@ -58,28 +63,44 @@ $ ssh-keygen -t ed25519
 $ eval `ssh-agent -s`
 $ ssh_add ~/.ssh/gbar_github
 ```
-4. For github repos cloned using https, `cd` into those repos and change the origin url to the ssh url. For example, for this repository:
+4. (Optional) For github repos cloned using https, `cd` into those repos and change the origin url to the ssh url. For example, for this repository:
 ```bash
 $ git remote set-url origin git@github.com:kristian-ebstrup/configs.git
 ```
 
 And that should do it.
 
-### SSH (clusters)
-To access DTU's clusters (gbar or sophia) remotely _without needing to rely in VPN_, it is necessary to generate an `ed25519` SSH key pair with a password, and copy the public key to `$HOME/.ssh/authorized_keys` on the cluster of interest. As such, this set-up requires being on DTU's network to set-up for this remote access.
+## Using SSH to access clusters without VPN
+
+To access DTU's clusters (gbar or sophia) remotely without needing to rely on VPN, it is necessary to generate an `ed25519` SSH key pair with a password, and copy the public key to `$HOME/.ssh/authorized_keys` on the cluster of interest. As such, this set-up requires being on DTU's network to set-up for this remote access.
 
 First generate the key pair:
 ```bash
 $ ssh-keygen -t ed25519
 ```
-and make sure to set-up a password for this key, and ideally name it e.g. `id_gbar` or `id_sophia` (as this is the names used in the current config files). Subsequently, copy-paste the public key into the `authorized_keys` on the cluster. For example, assuming no other (relevant) authorized keys are present on the gbar, this can be done as follows:
+and make sure to set-up a password for this key, and ideally name it e.g. `id_gbar` or `id_sophia` (as this is the names used in the current config files). Subsequently, copy-paste the public key into the `authorized_keys` on the cluster: 
+
 ```bash
 $ cd ~/.ssh
 $ touch authorized_keys
 $ cat id_gbar.pub >> authorized_keys
-$ gup authorized_keys .ssh/
+$ scp authorized_keys kreb@transfer.gbar.dtu.dk:~/.ssh/
 ```
-where `gup` is a function defined in the `.bashrc`. For sophia, simply replace `id_gbar.pub` with `id_sophia.pub`, and `gup` with `sup`.
+
+For sophia, simply replace `id_gbar.pub` with `id_sophia.pub`, and the hostname with `kreb@sophia1.hpc.ait.dtu.dk`.
+
+Alternatively, `cat` directly by piping the output to `ssh`:
+
+```bash
+$ cat ~/.ssh/id_gbar.pub | ssh kreb@transfer.gbar.dtu.dk: "cat >> ~/.ssh/authorized_keys"
+```
+
+or using `xclip`:
+
+```bash
+$ cat ~/.ssh/id_gbar.pub | xclip -selection c
+$ xclip -selection c -o | ssh kreb@transfer.gbar.dtu.dk: "cat >> ~/.ssh/authorized_keys"
+```
 
 ### curl
 Install `curl` using `apt`, as using `snap` causes some issues for `curl`:
@@ -105,7 +126,7 @@ To install Starship, run the command
 ```bash
 $ curl -sS https://starship.rs/install.sh | sh
 ```
-The `.bashrc` file is already set-up to use Starship once it is installed.
+The `.bashrc` file is already set-up to use Starship once it is installed. For gbar and Sophia, it can be necessary to get the binary through `cargo`.
 
 ### <a name="#alacritty"></a>Alacritty
 Alacritty has a few dependencies, which should be easily installed by running the following:
@@ -323,13 +344,14 @@ ln -s git/configs/.config/nvim/lua/plugins.lua .config/nvim/lua/
 ln -s git/configs/.tmux.conf .
 ln -s git/configs/.bashrc .
 ln -s git/configs/.bash_aliases
+ln -s git/configs/.ssh/config .ssh/
 ```
 
 To set Alacritty to open when pressing `Meta+Return` (or `Windows+Enter` on most keyboards), go to Custom Shortcuts (or similar, depending on your choice of distro) and add a new shortcut which points to `/home/$USER/.cargo/bin/alacritty`.
 
 Set `caps lock` to be an extra `esc` for better flow in nvim in Keyboard -> Advanced.
 
-To use the mount commands (`mountg` and `mounts` for *mount gbar* and *mount sophia* respectively), make sure to make the directories beforehand:
+(*Note: Currently depreciated in favour of `rsync`, and all mount commands are out-commented*) To use the mount commands (`mountg` and `mounts` for *mount gbar* and *mount sophia* respectively), make sure to make the directories beforehand:
 ```bash
 mkdir /mnt/gdrive
 mkdir /mnt/sdrive
@@ -338,10 +360,20 @@ Remember to use `umountg` and `umounts` to un-mount again before powering down.
 
 ### gbar
 gbar uses a modified `.bashrc` and `.bash_aliases`, so make sure to link to those instead of the "default" ones:
+
 ```bash
 cd $HOME
 ln -s git/configs/._gbar_bashrc .bashrc
 ln -s git/configs/._gbar_bash_aliases .bash_aliases
+```
+
+### Sophia
+In a similar fashion to gbar, Sophia uses modified `.bashrc` and `.bash_aliases`:
+
+```bash
+cd $HOME
+ln -s git/configs/._sophia_bashrc .bashrc
+ln -s git/configs/._sophia_bash_aliases .bash_aliases
 ```
 
 ## Printer

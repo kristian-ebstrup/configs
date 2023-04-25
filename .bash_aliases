@@ -5,34 +5,25 @@
 # SCP/SSH ALIASES
 # ------------- #
 # ssh short-cuts
-alias sophia='ssh -X kreb@sophia1.hpc.ait.dtu.dk -i ~/.ssh/id_sophia'
-alias gbar='ssh -X kreb@login.gbar.dtu.dk -i ~/.ssh/id_gbar'
+alias sophia='ssh -X kreb@sophia1.hpc.ait.dtu.dk'
+alias gbar='ssh -X kreb@login.gbar.dtu.dk'
 
 # VPN short-cut
 alias vpn='sudo openconnect --user=kreb --os=win extra-vpn.ait.dtu.dk'
 
-# Sophia mnt solution (Sergio)
-alias mounts='sudo sshfs -o allow_other,IdentityFile=/home/kreb/.ssh/id_rsa kreb@sophia1.hpc.ait.dtu.dk:/ /mnt/sdrive'
-alias umounts='sudo umount -l /mnt/sdrive'
-alias shome='cd /mnt/sdrive/home/kreb'
 
-# gbar mnt solution
-alias mountg='sudo sshfs -o allow_other,IdentityFile=/home/kreb/.ssh/id_gbar kreb@login1.gbar.dtu.dk:/ /mnt/gdrive' 
-alias umountg='sudo umount -l /mnt/gdrive'
-alias ghome='cd /mnt/gdrive/zhome/e9/6/145232/'
-
-# scp up/down aliases
+# rsync up/down aliases (maintains links)
 gup() {
-  scp -i /home/kreb/.ssh/id_gbar -r $1 kreb@transfer.gbar.dtu.dk:~/$2
+  rsync --progress -avhe ssh $1 kreb@transfer.gbar.dtu.dk:~/$2
 }
 gdown() {
-  scp -i /home/kreb/.ssh/id_gbar -r kreb@transfer.gbar.dtu.dk:~/$1 $2
+  rsync --progress -avhe ssh kreb@transfer.gbar.dtu.dk:~$1 $2
 }
 sup() {
-  scp -i /home/kreb/.ssh/id_sophia -r $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
+  rsync --progress -avhe ssh $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
 }
 sdown() {
-  scp -i /home/kreb/.ssh/id_sophia -r kreb@sophia1.hpc.ait.dtu.dk:~/$1 $2
+  rsync --progress -avhe ssh kreb@sophia1.hpc.ait.dtu.dk:~/$2 $1
 }
 
 
@@ -63,6 +54,9 @@ alias sd="cd ~ && cd \$(find * -type d | fzf)"
 
 # Shortcut to open Zettlr in phd-documentation folder
 alias zettlr="Zettlr /home/kreb/git/personal/phd-documentation"
+
+# overwrite xclip for easier piping
+alias xclip='xclip -selection c'
 
 # ----------------------- #
 # STANDARD BASHRC ALIASES
@@ -95,6 +89,30 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ----------------------- #
 # CURRENTLY UNUSED ALIASES
 # ----------------------- #
+
+# Sophia mnt solution (Sergio)
+# alias mounts='sudo sshfs -o allow_other,IdentityFile=/home/kreb/.ssh/id_rsa kreb@sophia1.hpc.ait.dtu.dk:/ /mnt/sdrive'
+# alias umounts='sudo umount -l /mnt/sdrive'
+# alias shome='cd /mnt/sdrive/home/kreb'
+
+# gbar mnt solution
+# alias mountg='sudo sshfs -o allow_other,IdentityFile=/home/kreb/.ssh/id_gbar kreb@login1.gbar.dtu.dk:/ /mnt/gdrive' 
+# alias umountg='sudo umount -l /mnt/gdrive'
+# alias ghome='cd /mnt/gdrive/zhome/e9/6/145232/'
+
+# scp up/down aliases
+# gup() {
+#   scp -i /home/kreb/.ssh/id_gbar -r $1 kreb@transfer.gbar.dtu.dk:~/$2
+# }
+# gdown() {
+#   scp -i /home/kreb/.ssh/id_gbar -r kreb@transfer.gbar.dtu.dk:~/$1 $2
+# }
+# sup() {
+#   scp -i /home/kreb/.ssh/id_sophia -r $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
+# }
+# sdown() {
+#   scp -i /home/kreb/.ssh/id_sophia -r kreb@sophia1.hpc.ait.dtu.dk:~/$1 $2
+# }
 
 # Mads' .bashrc EllipSys compiler
 # ce1d() { CWD=$(pwd); cd ~/git/cfd_tools/ellipsys/ellipsys1d/ellipsys1d/Executables/; make -f flowfield.mkf ; cd $CWD; }
