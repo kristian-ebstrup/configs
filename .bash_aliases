@@ -14,16 +14,16 @@ alias vpn='sudo openconnect --user=kreb --os=win extra-vpn.ait.dtu.dk'
 
 # rsync up/down aliases (maintains links)
 gup() {
-  rsync --progress -avhe ssh $1 kreb@transfer.gbar.dtu.dk:~/$2
+  rsync --progress -avhe ssh $1 kreb@transfer.gbar.dtu.dk:$2
 }
 gdown() {
-  rsync --progress -avhe ssh kreb@transfer.gbar.dtu.dk:~$1 $2
+  rsync --progress -avhe ssh kreb@transfer.gbar.dtu.dk:$1 $2
 }
 sup() {
-  rsync --progress -avhe ssh $1 kreb@sophia1.hpc.ait.dtu.dk:~/$2
+  rsync --progress -avhe ssh $1 kreb@sophia1.hpc.ait.dtu.dk:$2
 }
 sdown() {
-  rsync --progress -avhe ssh kreb@sophia1.hpc.ait.dtu.dk:~/$2 $1
+  rsync --progress -avhe ssh kreb@sophia1.hpc.ait.dtu.dk:$1 $2
 }
 
 
@@ -42,6 +42,9 @@ rst2pv() {
 
 # Paraview
 alias pv='/home/kreb/ParaView-5.11.0-MPI-Linux-Python3.9-x86_64/bin/paraview'
+
+# Pointwise
+alias pointwise='/home/kreb/tools/pointwise/Pointwise2022.2.1/pointwise'
 
 # Set nvim to start when calling vim
 alias vim='/usr/bin/nvim'

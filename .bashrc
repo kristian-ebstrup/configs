@@ -119,3 +119,8 @@ export PATH="$PATH:/home/kreb/.local/bin"
 
 # fzf addition during installation
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# --------------------------- #
+# ENVIRONMENT VARIABLES
+# --------------------------- #
+export CDS_LIC_FILE=5280@130.226.48.184
