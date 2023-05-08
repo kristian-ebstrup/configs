@@ -8,10 +8,11 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- auto-completion
-	use("hrsh7th/cmp-buffer") -- LSP source for nvim-cmp
-	use("hrsh7th/cmp-cmdline") -- LSP source for nvim-cmp
-	use("hrsh7th/cmp-path") -- LSP source for nvim-cmp
-	use("hrsh7th/cmp-nvim-lsp") -- LSP source for nvim-cmp
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-cmdline")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
 
 	-- snippets engines
@@ -19,12 +20,10 @@ return require("packer").startup(function(use)
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 
 	-- lsp
-	use("williamboman/nvim-lsp-installer")
 	use("neovim/nvim-lspconfig")
+	use("williamboman/nvim-lsp-installer")
 
 	-- misc. lsp-related
-	use("simrat39/rust-tools.nvim")
-	use("simrat39/inlay-hints.nvim")
 	use("mfussenegger/nvim-dap")
 
 	-- formatting
@@ -53,7 +52,6 @@ return require("packer").startup(function(use)
 
 	-- color schemes
 	use("RRethy/nvim-base16")
-	use("itchyny/lightline.vim")
 	use("projekt0n/github-nvim-theme")
 
 	-- markdown preview

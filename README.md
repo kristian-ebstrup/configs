@@ -225,6 +225,11 @@ $ chmod +x ~/.local/bin/rust-analyzer
 ```
 and it should be all set. Although, if it doesn't work, make sure that `~/.local/bin/` is in your `$PATH` environment variable.
 
+<------------------------------------------------------------------->
+DEPRECIATED; NEEDS TO BE CORRECTED (new LSP set-up! GBAR needs specific help for compiling treesitter)
+(GBAR: to compile treesitter, one needs to add "require("nvim-treesitter.install").compilers={"gcc"}" to the
+init.lua, while also loading the most recent gcc compiler. This is likely the same on Sophia)
+
 To set-up jedi-language-server, simply run the following commands:
 ```bash
 $ sudo apt install pipx

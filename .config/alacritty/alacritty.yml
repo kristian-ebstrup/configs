@@ -4,13 +4,13 @@
         },
         "font": {
                 "bold": {
-                        "family": "Hack"
+                        "family": "Hack Nerd Font"
                 },
                 "italic": {
-                        "family": "Hack"
+                        "family": "Hack Nerd Font"
                 },
                 "normal": {
-                        "family": "Hack"
+                        "family": "Hack Nerd Font"
                 },
         },
         "window": {

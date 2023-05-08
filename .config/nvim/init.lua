@@ -1,3 +1,5 @@
+--------------------------------------------
+-- AUTHOR: Kristian Ebstrup Jacobsen
 -- My configuration file for NeoVim.
 --------------------------------------------
 
@@ -18,11 +20,7 @@ vim.cmd([[
   set shiftwidth=2
 
   set termguicolors
-
 ]])
-
--- set leader
-vim.g.mapleader = " "
 
 --------------------------------------------
 -- Packer set-up
@@ -43,12 +41,19 @@ vim.cmd([[
 --------------------------------------------
 require("nvim-autopairs").setup()
 require("bufferline").setup()
-require("lualine").setup()
+require("nvim-web-devicons").setup()
+require("lualine").setup({
+	options = { theme = "nord" },
+})
 
--- language servers
-require("lspconfig").rust_analyzer.setup({})
-require("lspconfig").jedi_language_server.setup({})
-require("lspconfig").fortls.setup({})
+--------------------------------------------
+-- Color scheme and syntax
+--------------------------------------------
+vim.cmd([[
+  filetype plugin indent on
+  syntax on
+  colorscheme base16-nord
+]])
 
 --------------------------------------------
 -- Syntax highlighting
@@ -59,7 +64,6 @@ require("nvim-treesitter.configs").setup({
 		"json",
 		"lua",
 		"markdown",
-		"markdown_inline",
 		"python",
 		"regex",
 		"rust",
@@ -69,18 +73,6 @@ require("nvim-treesitter.configs").setup({
 	highlight = { enable = true },
 	indent = { enable = true },
 })
-
---------------------------------------------
--- Color scheme and syntax
---------------------------------------------
-vim.cmd([[
-  filetype plugin indent on
-  syntax on
-  let g:lightline = {
-    \ 'colorscheme': 'base16-nord',
-    \ }
-  colorscheme base16-nord
-]])
 
 --------------------------------------------
 -- Completion
@@ -105,8 +97,8 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
+			elseif require("luasnip").expand_or_jumpable() then
+				require("luasnip").expand_or_jump()
 			else
 				fallback()
 			end
@@ -126,6 +118,7 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "nvim_lsp_signature_help" },
 	}),
 })
 
@@ -178,23 +171,25 @@ require("null-ls").setup({
 -- Auto commands
 ---------------------------------
 vim.cmd([[
-  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync() 
+  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
 ]])
 
 ---------------------------------
 -- Language servers
 ---------------------------------
+require("nvim-lsp-installer").setup({})
+
 local lspconfig = require("lspconfig")
 local caps = vim.lsp.protocol.make_client_capabilities()
 local no_format = function(client, bufnr)
-	client.resolved_capabilities.document_formatting = false
+	client.server_capabilities.document_formatting = false
 end
 
 -- Capabilities
 caps.textDocument.completion.completionItem.snippetSupport = true
 
 -- Python
-lspconfig.jedi_language_server.setup({
+lspconfig.pyright.setup({
 	capabilities = caps,
 	on_attach = no_format,
 })
@@ -245,8 +240,8 @@ vim.g.mapleader = " "
 map("n", "<C-q>", ":q!<CR>", opts)
 map("n", "<F4>", ":bd<CR>", opts)
 map("n", "<F6>", ":sp<CR>:terminal<CR>", opts)
-map("n", "<S-Tab>", "gT", opts)
-map("n", "<Tab>", "gt", opts)
+map("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
+map("n", "<S-Tab>", "BufferLineCyclePrev<CR>", opts)
 map("n", "<silent> <Tab>", ":tabnew<CR>", opts)
 
 -- Diagnostics
@@ -286,7 +281,10 @@ vim.cmd([[
 -- NERDTree easy access
 vim.cmd([[
   nnoremap <leader>, :NERDTreeToggle<CR>
+]])
 
+-- Key-bindings for easy parenthesis surround
+vim.cmd([[
   nnoremap <leader>o viw<esc>a)<esc>hbi(<esc>lel
   nnoremap <leader>p viw<esc>a]<esc>hbi[<esc>lel
   nnoremap <leader>i viw<esc>a}<esc>hbi{<esc>lel
