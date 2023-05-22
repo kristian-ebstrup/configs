@@ -27,6 +27,7 @@ As part of recovering from a reinstallation of a Debian-based distro, re-install
 - [Slack](#slack)
 - [Zettlr](#zettlr)
 - [Zoom](#zoom)
+- [Flameshot](#flameshot)
 
 
 # Installation
@@ -229,6 +230,14 @@ and it should be all set. Although, if it doesn't work, make sure that `~/.local
 DEPRECIATED; NEEDS TO BE CORRECTED (new LSP set-up! GBAR needs specific help for compiling treesitter)
 (GBAR: to compile treesitter, one needs to add "require("nvim-treesitter.install").compilers={"gcc"}" to the
 init.lua, while also loading the most recent gcc compiler. This is likely the same on Sophia)
+SIMILARLY: Explain how to set up the Black, Rustfmt, Stylua
+(```
+cargo install rustfmt
+cargo install stylua
+pip install black
+```)
+MAYBE MAKE A GENERAL SET-UP, FOLLOWED BY A GBAR AND SOPHIA SET-UP, RATHER THAN INTERWEAVING
+IF PACKER COMPLAINS ABOUT THE TABLE IS NUL, RUN :PackerCompile
 
 To set-up jedi-language-server, simply run the following commands:
 ```bash
@@ -332,6 +341,13 @@ sudo apt install ./Zettlr-2.3.0-amd64.deb
 ```bash
 snap install zoom-client
 ```
+
+### <a name="#flameshot"></a>Flameshot
+```bash
+sudo apt install flameshot
+```
+
+To set-up hotkeys on KDE Plasma desktop, a configuration file is available on Flameshot's website. Simply follow the instructions, which are found [here](https://flameshot.org/docs/guide/key-bindings/).
 
 # Configurations
 
