@@ -26,6 +26,9 @@ return require("packer").startup(function(use)
 	-- misc. lsp-related
 	use("mfussenegger/nvim-dap")
 
+	-- extra Rust-related functionality
+	use("simrat39/rust-tools.nvim")
+
 	-- formatting
 	use("jose-elias-alvarez/null-ls.nvim")
 
@@ -41,6 +44,7 @@ return require("packer").startup(function(use)
 	use("junegunn/fzf")
 	use("junegunn/fzf.vim")
 	use("preservim/nerdtree")
+	use("nvim-telescope/telescope.nvim")
 
 	-- interface
 	use("akinsho/bufferline.nvim")

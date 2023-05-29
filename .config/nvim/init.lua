@@ -22,6 +22,13 @@ vim.cmd([[
   set termguicolors
 ]])
 
+-- Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not auto-select, nvim-cmp plugin will handle this for us.
+vim.o.completeopt = "menuone,noinsert,noselect"
+
 --------------------------------------------
 -- Packer set-up
 --------------------------------------------
@@ -43,7 +50,7 @@ require("nvim-autopairs").setup()
 require("bufferline").setup()
 require("nvim-web-devicons").setup()
 require("lualine").setup({
-	options = { theme = "nord" },
+	options = { theme = "auto" },
 })
 
 --------------------------------------------
@@ -151,8 +158,9 @@ require("null-ls").setup({
 		formatting.stylua,
 	},
 	on_attach = function(client, bufnr)
-		if client.name == "tsserver" or client.name == "rust_analyzer" or client.name == "pyright" then
+		if client.name == "tsserver" or client.name == "rust-analyzer" or client.name == "pyright" then
 			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
 		end
 
 		if client.supports_method("textDocument/formatting") then
@@ -160,7 +168,7 @@ require("null-ls").setup({
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = augroup,
 				callback = function()
-					vim.lsp.buf.formatting_sync()
+					vim.lsp.buf.format()
 				end,
 			})
 		end
@@ -170,9 +178,9 @@ require("null-ls").setup({
 ---------------------------------
 -- Auto commands
 ---------------------------------
-vim.cmd([[
-  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-]])
+-- vim.cmd([[
+--  autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+-- ]])
 
 ---------------------------------
 -- Language servers
@@ -194,11 +202,48 @@ lspconfig.pyright.setup({
 	on_attach = no_format,
 })
 
--- Rust
-lspconfig.rust_analyzer.setup({
-	capabilities = snip_caps,
-	on_attach = no_format,
-})
+-- Rust (see https://github.com/sharksforarms/neovim-rust/blob/master/neovim-init-lsp-cmp-rust-tools.lua)
+local opts = {
+	tools = {
+		runnables = {
+			use_telescope = true,
+		},
+		inlay_hints = {
+			auto = true,
+			show_parameter_hints = false,
+			parameter_hints_prefix = "",
+			other_hints_prefix = "",
+		},
+	},
+
+	-- all the opts to send to nvim-lspconfig
+	-- these override the defaults set by rust-tools.nvim
+	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+	server = {
+		-- on_attach is a callback called when the language server attachs to the buffer
+		on_attach = on_attach,
+		settings = {
+			-- to enable rust-analyzer settings visit:
+			-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+			["rust-analyzer"] = {
+				-- enable clippy on save
+				checkOnSave = {
+					command = "clippy",
+				},
+			},
+		},
+	},
+}
+require("rust-tools").setup(opts)
+
+-- have a fixed column for the diagnostics to appear in
+-- this removes the jitter when warnings/errors flow in
+vim.wo.signcolumn = "yes"
+
+-- " Set updatetime for CursorHold
+-- " 300ms of no cursor movement to trigger CursorHold
+-- set updatetime=300
+vim.opt.updatetime = 300
 
 -- Fortran
 lspconfig.fortls.setup({
@@ -270,7 +315,7 @@ local on_attach = function(client, bufnr)
 	kmap("n", "<space>rn", vim.lsp.buf.rename, bufopts)
 	kmap("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
 	kmap("n", "gr", vim.lsp.buf.references, bufopts)
-	kmap("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+	kmap("n", "<space>f", vim.lsp.buf.format, bufopts)
 end
 
 -- Python environment
