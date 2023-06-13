@@ -35,6 +35,9 @@ rst2pv() {
   /home/kreb/git/utils/postprocessing/rst2pv.sh "$@"
 }
 
+switchmode() {
+  /home/kreb/git/utils/ubuntu/switchmode.sh
+}
 
 # ------------- #
 # MISC. ALIASES
@@ -61,6 +64,9 @@ alias zettlr="Zettlr /home/kreb/git/personal/phd-documentation"
 # overwrite xclip for easier piping
 alias xclip='xclip -selection c'
 
+# command for locking / unlocking widgets in Plasma KDE
+alias lockwidgets="qdbus org.kde.plasmashell /PlasmaShell evaluateScript 'lockCorona(!locked)'"
+
 # ----------------------- #
 # STANDARD BASHRC ALIASES
 # ----------------------- #
@@ -81,8 +87,8 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alFh --group-directories-first'
-alias la='ls -A'
+alias ll='ls -lFh --group-directories-first'
+alias la='ls -lFhA --group-directories-first'
 alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
