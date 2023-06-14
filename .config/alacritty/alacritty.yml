@@ -13,5 +13,5 @@ font:
     family: Hack Nerd Font
 
 window:
-  title: Terminal
+  title: Alacritty (Bash)
 

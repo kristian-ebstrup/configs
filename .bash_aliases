@@ -39,6 +39,14 @@ switchmode() {
   /home/kreb/git/utils/ubuntu/switchmode.sh
 }
 
+gridc() {
+  /home/kreb/git/utils/postprocessing/gridc.sh
+}
+
+gridr() {
+  /home/kreb/git/utils/postprocessing/gridr.sh
+}
+
 # ------------- #
 # MISC. ALIASES
 # ------------- #
