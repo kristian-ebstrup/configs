@@ -52,10 +52,13 @@ gridr() {
 # ------------- #
 
 # Paraview
-alias pv='/home/kreb/ParaView-5.11.0-MPI-Linux-Python3.9-x86_64/bin/paraview'
+alias pv='/home/kreb/apps/ParaView-5.11.0-MPI-Linux-Python3.9-x86_64/bin/paraview'
 
 # Pointwise
-alias pointwise='/home/kreb/tools/pointwise/Pointwise2022.2.1/pointwise'
+alias pointwise='/home/kreb/apps/pointwise/Pointwise2022.2.1/pointwise'
+
+# Zotero
+alias zotero='/home/kreb/apps/Zotero_linux-x86_64/zotero'
 
 # Set nvim to start when calling vim
 alias vim='/usr/bin/nvim'

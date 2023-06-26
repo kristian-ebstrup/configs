@@ -28,6 +28,7 @@ As part of recovering from a reinstallation of a Debian-based distro, re-install
 - [Zettlr](#zettlr)
 - [Zoom](#zoom)
 - [Flameshot](#flameshot)
+- [Zotero](#zotero)
 
 
 # Installation
@@ -348,6 +349,9 @@ sudo apt install flameshot
 ```
 
 To set-up hotkeys on KDE Plasma desktop, a configuration file is available on Flameshot's website. Simply follow the instructions, which are found [here](https://flameshot.org/docs/guide/key-bindings/).
+
+### <a name="#zotero"></a>Zotero
+Download Zotero from [here](https://www.zotero.org/download/).
 
 # Configurations
 
