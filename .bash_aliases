@@ -9,7 +9,7 @@ alias sophia='ssh -X kreb@sophia1.hpc.ait.dtu.dk'
 alias gbar='ssh -X kreb@login.gbar.dtu.dk'
 
 # VPN short-cut
-alias vpn='sudo openconnect --user=kreb --os=win extra-vpn.ait.dtu.dk'
+alias vpn='sudo openconnect --user=kreb --useragent=AnyConnect --os=win extra-vpn.ait.dtu.dk'
 
 
 # rsync up/down aliases (maintains links)
@@ -47,8 +47,9 @@ gridr() {
   /home/kreb/git/utils/postprocessing/gridr.sh
 }
 
+
 # ------------- #
-# MISC. ALIASES
+# CFD TOOLS
 # ------------- #
 
 # Paraview
@@ -56,6 +57,19 @@ alias pv='/home/kreb/apps/ParaView-5.11.0-MPI-Linux-Python3.9-x86_64/bin/paravie
 
 # Pointwise
 alias pointwise='/home/kreb/apps/pointwise/Pointwise2022.2.1/pointwise'
+
+# 2D mesh plotting
+alias pltgrid='/home/kreb/git/ellipsys/pltgrid/drawgrid; /home/kreb/git/ellipsys/pltgrid/hpglview grid.plt'
+
+# Hypgrid + pltgrid
+alias hypplt='/home/kreb/git/ellipsys/hypgrid2d/hypgrid; pltgrid'
+
+# ------------- #
+# MISC. ALIASES
+# ------------- #
+
+# Obsidian
+alias obsidian='/home/kreb/apps/Obsidian-1.3.5.AppImage'
 
 # Zotero
 alias zotero='/home/kreb/apps/Zotero_linux-x86_64/zotero'
@@ -68,9 +82,6 @@ alias tmux='TERM=xterm-256color tmux'
 
 # Quick cd using fzf
 alias sd="cd ~ && cd \$(find * -type d | fzf)"
-
-# Shortcut to open Zettlr in phd-documentation folder
-alias zettlr="Zettlr /home/kreb/git/personal/phd-documentation"
 
 # overwrite xclip for easier piping
 alias xclip='xclip -selection c'
