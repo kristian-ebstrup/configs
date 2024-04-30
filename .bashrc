@@ -74,10 +74,6 @@ esac
 
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -93,17 +89,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Initiate Starship
 eval "$(starship init bash)"
 . "$HOME/.cargo/env"
 
-# Base16 Shell
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#         source "$BASE16_SHELL/profile_helper.sh"
-        
-# xset
-xset r rate 250 50
+# Activate standard Python environment
+source ~/venv/standard/bin/activate
+
+# Use xset to set keyboard repeat rate
+xset r rate 150 50
+
+# Ensure the ssh agent starts up
+#eval 'ssh-agent -s'
 
 # --------------------------- #
 # PATH EXPORTS
@@ -112,10 +109,7 @@ xset r rate 250 50
 export PATH=.:$PATH
 
 # ELLIPSYS2D_PATH
-export ELLIPSYS2D_PATH=$HOME/git/cfd_tools/ellipsys/ellipsys2d/Executables
-
-# Created by `pipx` on 2023-02-16 09:31:51
-export PATH="$PATH:/home/kreb/.local/bin"
+#export ELLIPSYS2D_PATH=$HOME/git/cfd_tools/ellipsys/ellipsys2d/Executables
 
 # fzf addition during installation
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
