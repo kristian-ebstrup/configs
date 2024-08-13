@@ -1,0 +1,15 @@
+[submodule "config-helix"]
+	path = config-helix
+	url = git@github.com:kristian-ebstrup/config-helix.git
+[submodule "config-i3"]
+	path = config-i3
+	url = git@github.com:kristian-ebstrup/config-i3
+[submodule "config-i3status-rs"]
+	path = config-i3status-rs
+	url = git@github.com:kristian-ebstrup/config-i3status-rs
+[submodule "config-lf"]
+	path = config-lf
+	url = git@github.com:kristian-ebstrup/config-lf
+[submodule "config-zellij"]
+	path = config-zellij
+	url = git@github.com:kristian-ebstrup/config-zellij
