@@ -13,3 +13,6 @@
 [submodule "config-zellij"]
 	path = config-zellij
 	url = git@github.com:kristian-ebstrup/config-zellij
+[submodule "config-alacritty"]
+	path = config-alacritty
+	url = git@github.com:kristian-ebstrup/config-alacritty
