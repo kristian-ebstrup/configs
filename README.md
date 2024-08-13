@@ -3,7 +3,7 @@
 This repository represents my 'fail-safe' for swiftly setting up a desktop the way I like it. It acts as a hub for all the individual config-repositories for each application.
 
 
-# Applications
+## Applications
 
 ### General Tools
 |Name|Link| 
@@ -37,8 +37,21 @@ This repository represents my 'fail-safe' for swiftly setting up a desktop the w
 |i3status-rs|https://github.com/greshake/i3status-rust|
 
 
-# Color Scheme
+## Color Scheme
 I tend to prefer [Rose Pine](https://rosepinetheme) as my go-to color theme for _everything_, and where available, it has been applied.
+
+
+# Quick Install
+|Application|Command|
+|:---|:---|
+|alacritty|<code>sudo apt-get install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3</code><br/><code>cargo install alacritty</code>|
+|curl|<code>sudo apt install curl</code>|
+|rust|<code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code>|
+|starship|<code>curl -sS https://starship.rs/install.sh | sh</code>|
+|fzf|<code>git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</code>|
+|hyperfine|<code>wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb</code><br/><code>sudo dpkg -i hyperfine_1.15.0_amd64.deb</code>|
+|base16-shell|<code>git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell</code>|
+
 
 
 # Installation
@@ -81,62 +94,6 @@ git remote set-url origin git@github.com:kristian-ebstrup/configs.git
 ```
 
 And that should do it.
-
-## curl
-Install `curl` using `apt`, as using `snap` causes some issues for `curl`:
-```bash
-$ sudo apt install curl
-```
-
-## General tools
-The installation instructions for the general tools follows in this section. No special credentials are necessary to install and set-up the general tools using my configs.
-
-### <a name="#rust"></a>Rust
-```bash
-$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-For a convenient feature, also install cargo-watch:
-
-```bash
-$ cargo install cargo-watch
-```
-
-### <a name="#starship"></a>Starship
-To install Starship, run the command
-```bash
-$ curl -sS https://starship.rs/install.sh | sh
-```
-
-### <a name="#alacritty"></a>Alacritty
-Alacritty has a few dependencies, which should be easily installed by running the following:
-```bash
-$ sudo apt-get install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
-```
-
-Once these dependencies are all downloaded and installed, Alacritty can easily be installed:
-```bash
-$ cargo install alacritty
-```
-but if there is an interest in a more involved installation process with more options, look [here](https://github.com/alacritty/alacritty/blob/master/INSTALL.md).
-
-### <a name="#fzf"></a>fzf
-```bash
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-```
-
-### [hyperfine](https://github.com/sharkdp/hyperfine)
-
-```bash
-$ wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
-$ sudo dpkg -i hyperfine_1.15.0_amd64.deb
-```
-
-### <a name="#base16-shell"></a>base16-shell
-```bash
-$ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-``` 
-
 
 ## [PhD-related tools](https://gitlab.windenergy.dtu.dk/)
 The installation instructions for the tools in this section assumes valid licenses and general access privileges (especially to the DTU Wind Energy gitlab site). As such, a general user is not expected to be able to have success following the instructions.
