@@ -114,6 +114,8 @@ export PATH=.:$PATH
 # fzf addition during installation
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+
+
 # --------------------------- #
 # ENVIRONMENT VARIABLES
 # --------------------------- #

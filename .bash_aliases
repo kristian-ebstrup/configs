@@ -72,9 +72,6 @@ alias pv='/home/kreb/apps/ParaView-5.12.0-RC1-MPI-Linux-Python3.10-x86_64/bin/pa
 # Zotero
 alias zotero='/home/kreb/apps/Zotero_linux-x86_64/zotero'
 
-# Set nvim to start when calling vim
-alias vim='/home/kreb/apps/nvim-linux64/bin/nvim'
-
 # Alias tmux to ensure 256 colors
 alias tmux='TERM=xterm-256color tmux'
 
@@ -86,6 +83,9 @@ alias jlab='jupyter lab --ContentsManager.allow_hidden=True'
 
 # change monitor setup
 alias i3m='/home/kreb/.config/i3/i3_monitor_setups.sh'
+
+# switch theme
+alias switch='python /home/kreb/.config/alacritty/switch.py'
 
 
 # ---------------------------------------------------- #
