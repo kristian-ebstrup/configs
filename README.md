@@ -1,35 +1,41 @@
-# Configuration Files
-This repository contains my configuration files for the most critical applications used. Further, this readme contains a list of commonly used applications which are relevant to install after a potential reinstallation of a Debian-based distro.
+# Configurations
+This repository represents my 'fail-safe' for swiftly setting up a desktop the way I like it. It acts as a hub for all the individual config-repositories for each application.
 
 # Applications
-As part of recovering from a reinstallation of a Debian-based distro, re-install the following:
 
-*General tools*
-- [Alacritty](#alacritty)
-- [Starship](#starship)
-- [Rust](#rust)
-- [fzf](#fzf)
-- [base16-shell](#base16-shell)
-- [tmux](#tmux)
-- [hyperfine](#hyperfine)
-- [neovim](#neovim)
+## General Tools
+|Name|Link|-| 
+|---|---|---|
+|Alacritty|-|-|
+|Starship|-|-|
+|base16--shell|-|-|
+|hyperfine|-|-|
+|zellij|-|-|
+|helix|-|-|
 
-*PhD-related tools*
-- [MATLAB](#matlab)
-- [EllipSys2D](#e2d)
-- [EllipSys3D](#e3d)
-- [PGL](#pgl)
-- [Pointwise](#pointwise)
-- [FieldView](#fieldview)
-- [ParaView](#paraview)
+## CFD Tools
+|Name|Link|-|
+|---|---|---|
+|EllipSys2D|-|-|
+|EllipSys3D|-|-|
+|PGLW|-|-|
+|Pointwise|-|-|
+|Fieldview|-|-|
+|Paraview|-|-|
 
-*Other*
-- [Slack](#slack)
-- [Zettlr](#zettlr)
-- [Zoom](#zoom)
-- [Flameshot](#flameshot)
-- [Zotero](#zotero)
+## Other
+|Name|Link|-|
+|---|---|---|
+|Slack|-|-|
+|Obsidian|-|-|
+|Zoom|-|-|
+|Flameshot|-|-|
+|Zotero|-|-|
+|i3|-|-|
+|i3status-rs|-|-|
 
+# Color Scheme
+I tend to prefer [Rose Pine](https://rosepinetheme) as my go-to color theme for _everything_, and where available, it has been applied.
 
 # Installation
 
